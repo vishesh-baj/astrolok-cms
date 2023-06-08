@@ -15,7 +15,9 @@ const { login,
         appointments,
         searchBookings,
         dashboard,
-        getavailableTimings
+        getavailableTimings,
+        chatCallReviewRatingOfAstrologerByUsers,
+        billGenerate
     } = require("../controllers/admin");
 
 adminRoutes.get("/", (req, res) => {
@@ -37,6 +39,8 @@ adminRoutes.get("/getavailableTimings", checkLoginOrNot, getavailableTimings)
 adminRoutes.get("/appointments", checkLoginOrNot, appointments)
 adminRoutes.get("/searchBookings", checkLoginOrNot, searchBookings)
 adminRoutes.get("/dashboard", checkLoginOrNot, dashboard)
+adminRoutes.put("/chatCallReviewRatingOfAstrologerByUsers", checkLoginOrNot, chatCallReviewRatingOfAstrologerByUsers )
+adminRoutes.post("/billGenerate", checkLoginOrNot, billGenerate)
 
 
 module.exports = adminRoutes;

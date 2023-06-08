@@ -1,8 +1,8 @@
+const Usermodel = require("../models/users/Usermodel");
 const bcrypt = require("bcrypt");
-const Usermodel = require("../models/Usermodel");
 const jwt = require("jsonwebtoken");
-const AstrologerModel = require("../models/AstrologerModel");
-const AstrologerBookingModel = require("../models/AstrologerBookingModel");
+const AstrologerModel = require("../models/Astrologers/AstrologerModel");
+const AstrologerBookingModel = require("../models/Astrologers/AstrologerBookingModel");
 const mongoose = require('mongoose');
 
 
