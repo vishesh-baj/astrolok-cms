@@ -12,9 +12,13 @@ export const appConfigSlice = createSlice({
     toggleDarkMode: (state) => {
       state.darkMode = !state.darkMode;
     },
+    toggleSidebar: (state) => {
+      state.sidebarOpen = !state.sidebarOpen;
+    },
   },
 });
 
 export const { toggleDarkMode } = appConfigSlice.actions;
 
 export default appConfigSlice.reducer;
+
