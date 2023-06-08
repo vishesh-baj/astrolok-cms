@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const appConfigSlice = createSlice({
-  name: "counter",
+  name: "app-config",
   initialState,
   reducers: {
     toggleDarkMode: (state) => {
@@ -21,4 +21,3 @@ export const appConfigSlice = createSlice({
 export const { toggleDarkMode } = appConfigSlice.actions;
 
 export default appConfigSlice.reducer;
-

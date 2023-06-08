@@ -1,4 +1,5 @@
 import { Navigate, Route } from "react-router-dom";
+
 export const hasAccess = (role, page) => {
   // Define the access rules based on user role
   const accessRules = {
