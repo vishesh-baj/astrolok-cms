@@ -1,7 +1,7 @@
 const express = require("express");
 const adminRoutes = express.Router();
 const { checkLoginOrNot } = require("../middleware/auth");
-const { login,
+const { 
         register,
         charges,
         logout,
@@ -24,7 +24,6 @@ adminRoutes.get("/", (req, res) => {
     res.status(400).send("welcome to the user routes")
 })
 
-adminRoutes.post("/login", login)
 adminRoutes.post("/register", register)
 adminRoutes.post("/charges", checkLoginOrNot, charges)
 adminRoutes.get("/getcharges", checkLoginOrNot, getcharges)
