@@ -7,20 +7,21 @@ export const hasAccess = (role, page) => {
     user: ["user"],
   };
 
-  // Check if the user role has access to the given page
+  // TODO: Check if the user role has access to the given page
   return accessRules[role] && accessRules[role].includes(page);
 };
 
 // need to be fetched from localstorage
-const userRole = "admin";
+const userRole = "user";
 
 export const buildRoutes = (data) => {
   // need to be provided from BE
-  data?.map(({ identifier, path, redirectPath, Element }) => {
+  data.map(({ identifier, path, redirectPath, Element }) => {
+    console.log("HAS ACCESS: ", hasAccess(userRole, identifier));
     return (
       <Route key={identifier} path={path}>
         {hasAccess(userRole, identifier) ? (
-          <Element />
+          Element
         ) : (
           <Navigate to={redirectPath} />
         )}
