@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   value: 0,
 };
+
 // this slice is only for reference
 export const counterSlice = createSlice({
   name: "counter",
