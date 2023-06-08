@@ -1,9 +1,5 @@
-const Button = ({ buttonText, buttonHandler }) => {
-  return (
-    <button onClick={() => buttonHandler()} className="btn btn-primary">
-      {buttonText}
-    </button>
-  );
+const Button = () => {
+  return <button className="btn btn-primary">abc</button>;
 };
 
 export default Button;

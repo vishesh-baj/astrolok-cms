@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   darkMode: false,
+  sidebarOpen: true,
 };
 
 export const appConfigSlice = createSlice({
