@@ -33,7 +33,6 @@ export const routes = [
     redirectPath: PATHS.errorPage,
     Element: UserPage,
   },
-
   {
     identifier: "login",
     path: PATHS.login,
