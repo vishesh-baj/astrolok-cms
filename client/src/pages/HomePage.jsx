@@ -9,11 +9,7 @@ const HomePage = () => {
       <Sidebar />
 
       <div
-        className={`bg-red-500 ${
-          sidebarToggle === true
-            ? "w-[80%] sm:bg-yellow-500 md:w-768px lg:w-1024px"
-            : "w-[93%] sm:w-640px md:w-768px lg:w-1024px"
-        }`}
+        className={`bg-red-500 w-screen`}
       >
         HomePage
       </div>
