@@ -1,10 +1,7 @@
-import React from "react";
 import Sidebar from "../components/Sidebar";
 import { useSelector } from "react-redux";
 
-
 const HomePage = () => {
-
   const sidebarToggle = useSelector((x) => x.appConfig.sidebarOpen);
 
   return (
