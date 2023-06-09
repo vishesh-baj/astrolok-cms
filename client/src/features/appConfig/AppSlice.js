@@ -18,7 +18,7 @@ export const appConfigSlice = createSlice({
   },
 });
 
-export const { toggleDarkMode } = appConfigSlice.actions;
+export const { toggleDarkMode,toggleSidebar } = appConfigSlice.actions;
 
 export default appConfigSlice.reducer;
 
