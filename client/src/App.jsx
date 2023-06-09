@@ -1,5 +1,5 @@
-import { buildRoutes } from "./utilities";
-import { routes } from "./router/routes";
+// import { buildRoutes } from "./utilities";
+// import { routes } from "./router/routes";
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages";
 import { PATHS } from "./router/paths";
@@ -9,7 +9,7 @@ const App = () => {
     <div className="font-body">
       <Routes>
         {/* maps routes */}
-        {buildRoutes(routes)}
+        {/* {buildRoutes(routes)} */}
         <Route element={<HomePage />} path={PATHS.home} />
       </Routes>
     </div>
