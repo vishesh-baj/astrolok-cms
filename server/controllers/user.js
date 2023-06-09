@@ -48,68 +48,7 @@ exports.register = async (req, res) => {
 }
 
 
-//login
-exports.login = async (req, res) => {
-    try {
-        //collected information from frontend
-        const { email, password, role } = req.body
-        
-        //validate
-        if (!email || !password) {
-            return res.status(401).send("email and password is required")
-        }
-        else if(role === "admin"){
-            return res.status(401).send("you are user trying to access admin route")
-        }
-        //check user in database
-        else if (role === "user") {
 
-            const userDetails = await Usermodel.findOne({email});
-            if (userDetails === null) {
-                return res.status(401).send("email is incorrect")
-            }
-            else if (userDetails?.role === "admin") {
-                return res.status(404).json({
-                    success: false,
-                    message: "you are admin, please select admin then login "
-                })
-            }
-        
-            
-            //match the password
-            if (userDetails && await bcrypt.compare(password, userDetails.password)) {
-                const token = jwt.sign({ id: userDetails._id, email }, process.env.SECRET_KEY, { expiresIn: '2h' })
-                userDetails.password = undefined
-                // userDetails.token = token
-                const options = {
-                    // domain: process.env.REACT_APP_URL,
-                    expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-                    httpOnly: true
-                }
-                return res.status(200).cookie("token", token, options).json({
-                    success: true,
-                    token,
-                    userDetails
-                })
-
-            }
-            else {
-                return res.status(400).json({
-                    success: 'false',
-                    message: 'password is incorrect'
-                })
-            }
-        
-        }
-
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: error.message
-        })
-    }
-
-};
 
 // bookings by user
 exports.booking = async (req, res) => {

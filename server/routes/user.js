@@ -11,7 +11,6 @@ userRoutes.get("/", (req, res) => {
 })
 
 userRoutes.post("/register", register)
-userRoutes.post("/login", login)
 userRoutes.post("/booking", checkLoginOrNot, booking)
 userRoutes.post("/logout", checkLoginOrNot, logout)
 
