@@ -11,9 +11,11 @@ export const hasAccess = (role, page) => {
   return accessRules[role] && accessRules[role].includes(page);
 };
 
+// need to be fetched from localstorage
+const userRole = "admin";
+
 export const buildRoutes = (data) => {
   // need to be provided from BE
-  const userRole = "admin";
   data?.map(({ identifier, path, redirectPath, Element }) => {
     return (
       <Route key={identifier} path={path}>
