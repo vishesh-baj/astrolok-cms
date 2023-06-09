@@ -12,7 +12,7 @@ const AstrologerCalls = new mongoose.Schema({
         ref: Usermodel // use the model name as a string for the ref option
     },
        
-   call:{
+   video:{
     type:String,
     secure_url:String,
    }

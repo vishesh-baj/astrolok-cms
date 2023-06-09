@@ -1,15 +1,20 @@
 const mongoose = require("mongoose")
-const { appointments } = require("../../controllers/admin")
+const { appointments } = require("../../controllers/admin");
+const AstrologerModel = require("./AstrologerModel");
 
 const AstroAppointmentsSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        require: true,
+    
+    astrologerdetails: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: AstrologerModel// use the model name as a string for the ref option
     },
-    gender:{
-        type: String, 
-        require: true,
-    }
+    userDetails: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Usermodel // use the model name as a string for the ref option
+    },
+    type:[{
+      type:String
+    }],
    
 })
 
