@@ -1,4 +1,4 @@
-import { routes } from "../../router/routes";
+// import { routes } from "../../router/routes";
 import { toggleSidebar } from "../../features/appConfig/AppSlice";
 import { useDispatch, useSelector } from "react-redux";
 const Sidebar = () => {
@@ -15,7 +15,7 @@ const Sidebar = () => {
 
 
     <div
-      className={`transition ease-in-out duration-600 delay-[200ms]  bg-gray-500 ${sidebarToggle === true ? "h-screen w-[20%] sm:w-640px md:w-768px lg:w-1024px"  : "h-screen w-[7%] sm:w-640px md:w-768px lg:w-1024px"}`}
+      className={`transform translate-x-0 duration-300 ease-in-out bg-gray-500 ${sidebarToggle === true ? "h-screen w-[20%] sm:w-640px md:w-768px lg:w-1024px"  : "h-screen w-[7%] sm:w-640px md:w-768px lg:w-1024px"}`}
     >
       <div onClick={handleClick}>side</div>
 
