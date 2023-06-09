@@ -7,15 +7,15 @@ const Sidebar = () => {
   const handleClick = () => {
   
     dispatch(toggleSidebar());
-    console.log("sidebarToggle", sidebarToggle);
+    // console.log("sidebarToggle", sidebarToggle);
       
   };
   // className={`bg-red-500 ${isActive ? 'text-white' : 'text-gray-500'}`}sm:w-[920px]
   return (
-    // style={{backgroundColor:"grey"}}
+
 
     <div
-      className={`transition-opacity duration-500 bg-gray-500 ${sidebarToggle === true ? "h-screen w-[20%] sm:w-640px md:w-768px lg:w-1024px"  : "h-screen w-[5%] sm:w-640px md:w-768px lg:w-1024px"}`}
+      className={`transition ease-in-out duration-600 delay-[200ms]  bg-gray-500 ${sidebarToggle === true ? "h-screen w-[20%] sm:w-640px md:w-768px lg:w-1024px"  : "h-screen w-[7%] sm:w-640px md:w-768px lg:w-1024px"}`}
     >
       <div onClick={handleClick}>side</div>
 
