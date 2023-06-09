@@ -15,7 +15,7 @@ const Sidebar = () => {
 
 
     <div
-      className={`transform translate-x-0 duration-300 ease-in-out bg-gray-500 ${sidebarToggle === true ? "h-screen w-[20%] sm:w-640px md:w-768px lg:w-1024px"  : "h-screen w-[7%] sm:w-640px md:w-768px lg:w-1024px"}`}
+      className={` bg-gray-500 ${sidebarToggle === true ? "h-screen w-[20%] sm:w-640px md:w-768px lg:w-1024px"  : "h-screen w-[7%] sm:w-640px md:w-768px lg:w-1024px "} transform translate-x-0 duration-300 ease-in-out `}
     >
       <div onClick={handleClick}>side</div>
 
