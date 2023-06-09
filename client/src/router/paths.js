@@ -4,5 +4,5 @@ export const PATHS = {
   userBirthDetails: "/user-birth-details",
   userConsultationList: "/user-consultation-list",
   userCourseList: "/user-course-list",
-  userProfile: "/user-profile",
+  userProfile: "/user-profile"
 };
