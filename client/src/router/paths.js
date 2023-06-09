@@ -1,10 +1,8 @@
 export const PATHS = {
-  home: "/",
-  login: "/login",
-  signup: "/signup",
-  errorPage: "/404-error-occured",
-  astrologer: "/astrologer",
-  admin: "/admin",
-  user: "/user",
-  // and so on
+  // user dashboard
+  userDashboard: "/user-dashboard",
+  userBirthDetails: "/user-birth-details",
+  userConsultationList: "/user-consultation-list",
+  userCourseList: "/user-course-list",
+  userProfile: "/user-profile",
 };
