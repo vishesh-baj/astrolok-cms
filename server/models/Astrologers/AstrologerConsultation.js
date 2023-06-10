@@ -29,7 +29,7 @@ const AstrologerBookingSchema = mongoose.Schema({
     },
     waitingTime: {
         type: String,
-        default: nil
+        default: null,
     }
 
 }, { timestamps: true })

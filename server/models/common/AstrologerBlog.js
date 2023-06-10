@@ -27,6 +27,10 @@ const AstrologerBlog = new mongoose.Schema({
         type: String,
         require: String,
     },
+    comment:{
+        type:String,
+        id:mongoose.Schema.Types.ObjectId,
+    },
     tags: [{
         type: String
     }]

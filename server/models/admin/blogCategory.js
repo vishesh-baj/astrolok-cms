@@ -1,8 +1,14 @@
 const mongoose = require("mongoose");
 const blogCategory = new mongoose.Schema({
-     categoryTypes:{
-        type:Array
-     }
+   name:{
+      type:String,
+      require:true,
+   },
+   status:{
+      type:Boolean,
+      default:true,
+   },
+
 },
 { timestamps: true }
 )

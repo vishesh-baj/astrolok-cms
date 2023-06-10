@@ -16,7 +16,7 @@ const {
         searchBookings,
         dashboard,
         getavailableTimings,
-        chatCallReviewRatingOfAstrologerByUsers,
+        // chatCallReviewRatingOfAstrologerByUsers,
         billGenerate
     } = require("../controllers/asttrologers");
 
@@ -38,8 +38,8 @@ astrologerRoutes.get("/getavailableTimings", checkLoginOrNot, getavailableTiming
 astrologerRoutes.get("/appointments", checkLoginOrNot, appointments)
 astrologerRoutes.get("/searchBookings", checkLoginOrNot, searchBookings)
 astrologerRoutes.get("/dashboard", checkLoginOrNot, dashboard)
-astrologerRoutes.put("/chatCallReviewRatingOfAstrologerByUsers", checkLoginOrNot, chatCallReviewRatingOfAstrologerByUsers )
-astrologerRoutes.post("/billGenerate", checkLoginOrNot, billGenerate)
+// astrologerRoutes.put("/chatCallReviewRatingOfAstrologerByUsers", checkLoginOrNot, chatCallReviewRatingOfAstrologerByUsers )
+// astrologerRoutes.post("/billGenerate", checkLoginOrNot, billGenerate)
 
 
 module.exports = astrologerRoutes;

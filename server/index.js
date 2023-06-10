@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 
 const astrolokRoutes = require("./routes/astrolok");
 const astrologerRoutes = require("./routes/asttrologers");
+const authRoutes = require("./routes/auth");
 
 // DB start
 DBconnection();
@@ -42,6 +43,7 @@ app.use(express.json());
 app.use("/api/users",userRoutes)
 app.use("/api/astrologer",astrologerRoutes)
 app.use("/api/astrolok",astrolokRoutes)
+app.use("/api",authRoutes)
 
 
 
