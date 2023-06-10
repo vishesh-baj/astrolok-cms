@@ -4,7 +4,18 @@ import GoogleIcon from "../../assets/googleIcon.svg";
 import FacebookIcon from "../../assets/facebookIcon.svg";
 import { Link } from "react-router-dom";
 import { PATHS } from "../../router/paths";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signupSchema } from "../../validations";
 const SignupPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(signupSchema()) });
+
+  const onSubmit = (data) => console.log("LOGIN DATA: ", data);
+
   return (
     <div className="w-screen h-screen flex">
       {/* left  */}
@@ -28,11 +39,11 @@ const SignupPage = () => {
           </div>
           {/* login buttons */}
           <div className="flex justify-between gap-2">
-            <button className="btn text-[9px]  w-1/2 cursor-pointer">
+            <button className="btn text-[9px]  w-1/2 cursor-pointer font-extralight">
               <img src={GoogleIcon} alt="google icon" />
               Signin with Google
             </button>
-            <button className="btn text-[9px] w-1/2 cursor-pointer">
+            <button className="btn text-[9px] w-1/2 cursor-pointer font-extralight">
               <img src={FacebookIcon} alt="google icon" />
               Signin with FB
             </button>
@@ -41,17 +52,19 @@ const SignupPage = () => {
         <div className="text-center text-xs text-gray-400">
           _____or signup with_____
         </div>
-        <form className="w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           {/* username input */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
             </label>
             <input
+              {...register("name")}
+              name="name"
               type="text"
-              placeholder="Type here"
               className="input input-bordered w-full"
             />
+            <p className="text-rose-600">{errors.email?.message}</p>
           </div>
           {/* password input */}
           <div className="form-control">
@@ -59,23 +72,30 @@ const SignupPage = () => {
               <span className="label-text">Email</span>
             </label>
             <input
-              type="text"
-              placeholder="Type here"
+              {...register("email")}
+              name="email"
+              type="email"
               className="input input-bordered w-full"
             />
+            <p className="text-rose-600">{errors.email?.message}</p>
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
             <input
+              {...register("password")}
+              name="password"
               type="password"
-              placeholder="Type here"
               className="input input-bordered w-full"
             />
+            <p className="text-rose-600">{errors.password?.message}</p>
           </div>
 
-          <button className="btn btn-primary mt-4 w-full bg-blue-600 border-none hover:bg-blue-300 hover:text-white">
+          <button
+            type="submit"
+            className="btn btn-primary mt-4 w-full bg-blue-600 border-none hover:bg-blue-300 hover:text-white"
+          >
             Signup
           </button>
         </form>

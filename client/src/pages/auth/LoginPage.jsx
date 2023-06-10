@@ -4,15 +4,27 @@ import GoogleIcon from "../../assets/googleIcon.svg";
 import FacebookIcon from "../../assets/facebookIcon.svg";
 import { Link } from "react-router-dom";
 import { PATHS } from "../../router/paths";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../../validations";
+
 const LoginPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(loginSchema()) });
+  const onSubmit = (data) => console.log("LOGIN DATA: ", data);
+
   return (
     <div className="w-screen h-screen flex">
       {/* left  */}
       <aside className="hidden md:flex w-3/4 h-screen bg-gray-50 justify-center items-center">
         <img className="w-1/2 " src={Banner} alt="asatrolok banner" />
       </aside>
+
       {/* right */}
-      <aside className="flex flex-col gap-4  w-[40%]  h-screen px-16">
+      <aside className="flex flex-col gap-4 w-screen  md:w-[40%]  h-screen px-8 md:px-16">
         <div className="flex justify-center items-center p-4 mt-16">
           <img
             className="image-full w-[12rem] h-[4rem]"
@@ -28,26 +40,32 @@ const LoginPage = () => {
           </div>
           {/* login buttons */}
           <div className="flex justify-between gap-4">
-            <button className="btn flex text-[9px]  w-1/2">
+            <button className="btn flex text-[9px] font-extralight  w-1/2">
               <img src={GoogleIcon} alt="google icon" />
-              Signup with Google
+              Signin with Google
             </button>
-            <button className="btn text-[9px]   w-1/2">
+            <button className="btn text-[9px]   font-extralight w-1/2">
               <img src={FacebookIcon} alt="google icon" />
-              Signup with FB
+              Signin with FB
             </button>
           </div>
         </div>
         <div className="text-center text-xs text-gray-400">
           _____or sign in with_____
         </div>
-        <form className="w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           {/* username input */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Username</span>
             </label>
-            <input type="text" className="input input-bordered w-full" />
+            <input
+              {...register("userName")}
+              name="userName"
+              type="text"
+              className="input input-bordered w-full"
+            />
+            <p className="text-rose-600">{errors.userName?.message}</p>
           </div>
           {/* password input */}
           <div className="form-control">
@@ -59,13 +77,15 @@ const LoginPage = () => {
           <div className="flex justify-between mt-4">
             <div className="flex justify-between gap-2 ">
               <input
+                {...register("password")}
+                name="password"
                 className="checkbox checkbox-info checkbox-sm bg-white"
                 type="checkbox"
               />
-
-              <span className="text-[14px]">Remember this device</span>
+              <p className="text-rose-600">{errors.password?.message}</p>
             </div>
-            <div>
+            <div className="flex">
+              <span className="text-[14px]">Remember this device</span>
               <Link
                 to={PATHS.forgetPassword}
                 className="text-[14px]  text-blue-600 cursor-pointer"
@@ -74,8 +94,10 @@ const LoginPage = () => {
               </Link>
             </div>
           </div>
-
-          <button className="btn btn-primary mt-4 w-full bg-blue-600 border-none hover:bg-blue-300 hover:text-white">
+          <button
+            type="submit"
+            className="btn btn-primary mt-4 w-full bg-blue-600 border-none hover:bg-blue-300 hover:text-white"
+          >
             Login
           </button>
         </form>
