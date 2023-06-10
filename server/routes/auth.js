@@ -10,11 +10,9 @@ authRoutes.get("/welcome",function(req,res){
 
 const auth = new AuthController;
 
-try {
-    authRoutes.post("/register", auth.register);
-  } catch (error) {
-    console.log(error.message);
-  }
+ authRoutes.post("/register", auth.register);
+ authRoutes.post("/login", auth.login);
+  
 
 module.exports = authRoutes;
 
