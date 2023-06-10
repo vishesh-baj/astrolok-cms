@@ -33,8 +33,8 @@ export { default as AdminUsersList } from "./admin/AdminUsersList";
 
 // AUTH PAGES
 export { default as ForgetPasswordPage } from "./auth/ForgotPassword";
-export { default as Loginpage } from "./auth/LoginPage";
+export { default as LoginPage } from "./auth/LoginPage";
 export { default as SignupPage } from "./auth/SignupPage";
 
 // experimental
-export { default as HomePage } from "./HomePage";
+// export { default as HomePage } from "./HomePage";
