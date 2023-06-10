@@ -1,5 +1,7 @@
 import Banner from "../../assets/banner.svg";
 import AstrolokIcon from "../../assets/astrolokLogo.png";
+import { Link } from "react-router-dom";
+import { PATHS } from "../../router/paths";
 
 const ForgotPassword = () => {
   return (
@@ -9,7 +11,7 @@ const ForgotPassword = () => {
         <img className="w-1/2 " src={Banner} alt="asatrolok banner" />
       </aside>
       {/* right */}
-      <aside className="flex flex-col gap-4  w-[40%]  h-screen p-4">
+      <aside className="flex flex-col gap-4  w-[40%]  h-screen px-16">
         <div className="flex justify-center items-center p-4 mt-16">
           <img
             className="image-full w-[12rem] h-[4rem]"
@@ -45,9 +47,12 @@ const ForgotPassword = () => {
             <button className="btn btn-primary mt-4 w-full bg-blue-600 border-none hover:bg-blue-300 hover:text-white">
               Forgot Password
             </button>
-            <button className="btn btn-primary mt-4 w-full bg-blue-200 border-none text-blue-400 hover:bg-blue-300 hover:text-white">
+            <Link
+              to={PATHS.login}
+              className="btn btn-primary mt-4 w-full bg-blue-200 border-none text-blue-400 hover:bg-blue-300 hover:text-white"
+            >
               Back to Login
-            </button>
+            </Link>
           </div>
         </form>
       </aside>

@@ -34,9 +34,9 @@ export const PATHS = {
 
   // auth
   forgetPassword: "/forget-password",
-  loginPassword: "/login-password",
+  login: "/login",
   signupPage: "/signup-page",
 
   // experimental
-  home: "/",
+  root: "/",
 };
