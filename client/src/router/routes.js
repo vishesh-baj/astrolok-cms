@@ -2,14 +2,10 @@ import { PATHS } from "./paths";
 import {
   HomePage,
   AstrologerPage,
-  AdminPage,
   LoginPage,
   SignupPage,
   UserPage,
 } from "../pages";
-
-
-
 
 export const routes = [
   {
