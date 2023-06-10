@@ -7,6 +7,8 @@ import { PATHS } from "../../router/paths";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "../../validations";
+
+
 const SignupPage = () => {
   const {
     register,
@@ -14,7 +16,17 @@ const SignupPage = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(signupSchema()) });
 
-  const onSubmit = (data) => console.log("LOGIN DATA: ", data);
+  const onSubmit = (data) => {
+    if (data["confirmPassword"]) {
+      console.log("CONFIRM PASSWORD EXISTS IN OBJECT: ", {
+        name: data?.name,
+        email: data?.email,
+        number: data?.number,
+        password: data?.password,
+        role: "user",
+      });
+    }
+  };
 
   return (
     <div className="w-screen h-screen flex">
@@ -54,7 +66,7 @@ const SignupPage = () => {
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           {/* username input */}
-          <div className="form-control">
+          <div>
             <label className="label">
               <span className="label-text">Name</span>
             </label>
@@ -62,12 +74,12 @@ const SignupPage = () => {
               {...register("name")}
               name="name"
               type="text"
-              className="input input-bordered w-full"
+              className="input input-bordered input-md w-full"
             />
             <p className="text-rose-600">{errors.email?.message}</p>
           </div>
-          {/* password input */}
-          <div className="form-control">
+          {/* user email */}
+          <div>
             <label className="label">
               <span className="label-text">Email</span>
             </label>
@@ -75,11 +87,26 @@ const SignupPage = () => {
               {...register("email")}
               name="email"
               type="email"
-              className="input input-bordered w-full"
+              className="input input-bordered input-md w-full"
             />
             <p className="text-rose-600">{errors.email?.message}</p>
           </div>
-          <div className="form-control">
+          {/* user number */}
+          <div>
+            <label htmlFor="number" className="label">
+              <span className="label-text">Phone</span>
+            </label>
+            <input
+              {...register("number")}
+              name="number"
+              className="input input-bordered input-md w-full"
+              type="tel"
+              pattern="[0-9]*"
+            />
+            <p className="text-rose-600">{errors.number?.message}</p>
+          </div>
+          {/* user password */}
+          <div>
             <label className="label">
               <span className="label-text">Password</span>
             </label>
@@ -87,11 +114,23 @@ const SignupPage = () => {
               {...register("password")}
               name="password"
               type="password"
-              className="input input-bordered w-full"
+              className="input input-bordered input-md w-full"
             />
             <p className="text-rose-600">{errors.password?.message}</p>
           </div>
-
+          {/* user confirm password */}
+          <div>
+            <label className="label">
+              <span className="label-text">Confirm Password</span>
+            </label>
+            <input
+              {...register("confirmPassword")}
+              name="confirmPassword"
+              type="password"
+              className="input input-bordered input-md w-full"
+            />
+            <p className="text-rose-600">{errors.confirmPassword?.message}</p>
+          </div>
           <button
             type="submit"
             className="btn btn-primary mt-4 w-full bg-blue-600 border-none hover:bg-blue-300 hover:text-white"

@@ -8,8 +8,6 @@ const Sidebar = () => {
     dispatch(toggleSidebar());
   };
 
-  //  console.log("sidebarToggle", routes);
-  // className={`bg-red-500 ${isActive ? 'text-white' : 'text-gray-500'}`}sm:w-[920px]
   return (
     <div
       className={`duration-300 ease-in-out bg-gray-500 ${
@@ -21,10 +19,6 @@ const Sidebar = () => {
       <div onClick={handleClick} className="cursor-pointer">
         side
       </div>
-
-      {/* {routes.map((elem) => {
-        return <h5 style={{ marginTop: "2%" }}>{elem.identifier}</h5>;
-      })} */}
     </div>
   );
 };
