@@ -1,76 +1,80 @@
 const mongoose = require("mongoose");
 const AstrologerAccountModel = require("./AstrologerAccountModel");
-const AstrologerSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        require:true,
-        min:2,
-        max:25,
+
+const AstrologerSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      require: true,
+      min: 2,
+      max: 25,
     },
-    gender:{
-        type:String,
-        require:true,
+    gender: {
+      type: String,
+      require: true,
     },
-    email:{
-        type:String,
-        require:true,
-        unique:true,
+    email: {
+      type: String,
+      require: true,
+      unique: true,
     },
-    password:{
-        type:String,
-        require:true,
-        min:6,
+    password: {
+      type: String,
+      require: true,
+      min: 6,
     },
-    mobile:{
-        type:Number,
+    mobile: {
+      type: Number,
     },
-    profilePicture:{
-        id:String,
-        secure_url:String,
+    profilePicture: {
+      id: String,
+      secure_url: String,
     },
-    nationalBookCharges:{
-        type:Number,
-        default:"0"
+    nationalBookCharges: {
+      type: Number,
+      default: "0",
     },
-    role:{
-        type:String,
-        default:"admin",
+    role: {
+      type: String,
+      default: "admin",
     },
-    internationalBookCharges:{
-        type:Number,
-        default:"0"
+    internationalBookCharges: {
+      type: Number,
+      default: "0",
     },
-    experienceInYears:{
-        type:Number,
+    experienceInYears: {
+      type: Number,
     },
-    organization:{
-        type:String,
-        require:true,
-        default:"Asttrolok"
+    organization: {
+      type: String,
+      require: true,
+      default: "Asttrolok",
     },
-    address:{
-        type:String,
-        require:true
+    address: {
+      type: String,
+      require: true,
     },
-    areaofInterest:[{
-        type:String,
-        require:true
-    }],
-    videoType:{
-        type:String,
+    areaofInterest: [
+      {
+        type: String,
+        require: true,
+      },
+    ],
+    videoType: {
+      type: String,
     },
-    reviewVideoLink:{
-        type:String,
+    reviewVideoLink: {
+      type: String,
     },
     // Astrologerdetails: {
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: "Astrologer" // use the model name as a string for the ref option
     // }
-},
-{ timestamps: true }
+  },
+  { timestamps: true }
 );
 
 // add the properties of AstrologerAccountModel to AstrologerSchema
 AstrologerSchema.add(AstrologerAccountModel.schema);
 
-module.exports  = mongoose.model("AstroPersonalDetails",AstrologerSchema);
+module.exports = mongoose.model("AstroPersonalDetails", AstrologerSchema);
