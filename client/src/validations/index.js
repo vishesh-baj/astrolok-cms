@@ -27,3 +27,12 @@ export const signupSchema = () => {
       .required("password is required"),
   });
 };
+
+export const forgetPasswordSchema = () => {
+  return yup.object({
+    email: yup
+      .string()
+      .email("invalid email")
+      .required("email cannot be empty string"),
+  });
+};

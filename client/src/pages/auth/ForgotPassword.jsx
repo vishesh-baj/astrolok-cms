@@ -2,8 +2,18 @@ import Banner from "../../assets/banner.svg";
 import AstrolokIcon from "../../assets/astrolokLogo.png";
 import { Link } from "react-router-dom";
 import { PATHS } from "../../router/paths";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { forgetPasswordSchema } from "../../validations";
 
 const ForgotPassword = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(forgetPasswordSchema()) });
+  const onSubmit = (data) => console.log("LOGIN DATA: ", data);
+
   return (
     <div className="w-screen h-screen flex">
       {/* left  */}
@@ -30,17 +40,19 @@ const ForgotPassword = () => {
           </div>
         </div>
 
-        <form className="w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           {/* username input */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email Address</span>
             </label>
             <input
+              {...register("email")}
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full"
             />
+            <p className="text-rose-600">{errors.email?.message}</p>
           </div>
 
           <div>
