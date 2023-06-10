@@ -9,12 +9,12 @@ const availableTimingSchema = mongoose.Schema({
         require:true,
         default:false,
     },
-    startTime: { type: String, min: 0, max: 23, required: true, default: 00 }, // hour of the day
-    endTime: { type: String, min: 0, max: 23, required: true, default: 00 }, // hour of the day
-    lunchTimeIn: { type: String, min: 0, max: 23, required: true, default: 00 },
-    lunchTimeOut: { type: String, min: 0, max: 23, required: true, default: 00 },
-    teaTimeIn: { type: String, min: 0, max: 23, required: true, default: 00 },
-    teaTimeOut: { type: String, min: 0, max: 23, required: true, default: 00 },
+    startTime: { type: String, min: 0, max: 23, required: true }, // hour of the day
+    endTime: { type: String, min: 0, max: 23, required: true }, // hour of the day
+    lunchTimeIn: { type: String, min: 0, max: 23, required: true },
+    lunchTimeOut: { type: String, min: 0, max: 23, required: true },
+    teaTimeIn: { type: String, min: 0, max: 23, required: true },
+    teaTimeOut: { type: String, min: 0, max: 23, required: true },
     bookedBy: { type: mongoose.Schema.Types.ObjectId, ref: AstrologerModel }, // optional reference to the user who booked the slot
     // other fields as needed  
 })

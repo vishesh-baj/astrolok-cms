@@ -2,7 +2,7 @@ const Usermodel = require("../models/users/Usermodel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const AstrologerModel = require("../models/Astrologers/AstrologerModel");
-const AstrologerBookingModel = require("../models/Astrologers/AstrologerBookingModel");
+const AstrologerBookingModel = require("../models/Astrologers/AstrologerConsultation");
 const mongoose = require('mongoose');
 
 
