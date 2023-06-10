@@ -1,5 +1,8 @@
-import { useState } from "react";
-import { toggleSidebar } from "../../features/appConfig/AppSlice";
+import { useEffect, useState } from "react";
+import {
+  toggleSidebar,
+  toggleMobileView,
+} from "../../features/appConfig/AppSlice";
 import { useDispatch, useSelector } from "react-redux";
 const Sidebar = () => {
   const [selectedOption, setSelectedOption] = useState("Dashboard");
@@ -12,6 +15,20 @@ const Sidebar = () => {
   const handleOptionClick = (option) => {
     setSelectedOption(option);
   };
+  console.log("innerWidth", window.innerWidth);
+  console.log("innerHeight", window.innerHeight);
+  const handleMobileView = () => {
+    // toggleMobileView()
+  };
+  const mobileViewToggle = useSelector((value) => value.appConfig.isMobileView);
+
+  useEffect(() => {
+    if (window.innerWidth <= 390) {
+      dispatch(toggleMobileView());
+
+      console.log("asdfghjhc", mobileViewToggle);
+    }
+  }, []);
 
   const routes = [
     {
@@ -133,10 +150,10 @@ const Sidebar = () => {
   return (
     <div className="flex h-screen">
       <div
-        className={`bg-gray-200 flex flex-col items-center justify-center"  duration-300 ease-in-out  ${
+        className={` md:  flex flex-col items-center justify-center"  duration-300 ease-in-out  ${
           sidebarToggle === true
-            ? "h-screen sm: w-[50%] lg:w-[20%]"
-            : "h-screen w-[7%] "
+            ? "h-screen bg-gray-200 sm: w-[50%] md:w-[20%]"
+            : "   sm:bg-gray-200 md:h-screen bg-white-200 w-[7%] "
         }`}
       >
         <div onClick={handleClick} className="cursor-pointer mt-4">
@@ -199,7 +216,7 @@ const Sidebar = () => {
         </div>
 
         <div className="flex-1 mt-2 ">
-          {routes.map((elem) => {
+          {routes?.map((elem) => {
             {
               return sidebarToggle === true ? (
                 <div className="flex justify-between">
@@ -216,7 +233,7 @@ const Sidebar = () => {
                   </p>
                 </div>
               ) : (
-                <h6 className="sm:mt-8 hidden lg:mt-8 cursor-pointer">
+                <h6 className="sm:mt-8 hidden md:block md:mt-8 cursor-pointer">
                   {elem.icon}
                 </h6>
               );
