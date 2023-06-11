@@ -1,5 +1,5 @@
 require("dotenv").config;
-const AstrologerModel = require("../models/Astrologers/AstrologerModel");
+const AstrologerModel = require("../models/Astrologers/AstrologerPersonalDetailModel");
 const Usermodel = require("../models/users/Usermodel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");

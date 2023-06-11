@@ -51,7 +51,7 @@ class AuthController {
   }
 
   login = async(req,res)=>{
-    console.log("iamworking");
+    
      try {
         const {email ,password} = req.body
         if(!email || !password){
@@ -65,21 +65,59 @@ class AuthController {
           // findUserbyEmail this is not mongo query it is fn in services
         
           const userExist = await this.authSeriviceInstance.findUserbyEmail(email,res);
+        
           if(userExist){
-            await this.authSeriviceInstance.login(password, userExist,res);
+           const data =  await this.authSeriviceInstance.login(password ,userExist ,res);
+           if(data){
+            return res.status(200).json({
+              success:true,
+              message:data
+            })
+           }
+           else{
+            return res.status(400).json({
+              success:false,
+              message:"password is incorrect"
+            })
+           }
           }
 
           // as it is not user we will check for astrologer
           else{
             const astrologerExist = await this.authSeriviceInstance.findAstrologerByEmail(email,res)
+            
             if(astrologerExist){
-              await this.authSeriviceInstance.login(password, astrologerExist,res);
+              const data = await this.authSeriviceInstance.login(password, astrologerExist,res);
+              if(data){
+                return res.status(200).json({
+                  success:true,
+                  message:data
+                })
+               }
+               else{
+                return res.status(400).json({
+                  success:false,
+                  message:"password is incorrect"
+                })
+               }
             }
 
             // as it is not astrologer we will check for admin
             const adminExist = await this.authSeriviceInstance.findAdminByEmail(email,res)
             if(adminExist){
-              await this.authSeriviceInstance.login(password, astrologerExist,res);
+             const data =  await this.authSeriviceInstance.login(password, adminExist,res);
+             if(data){
+              return res.status(200).json({
+                success:true,
+                message:data
+              })
+             }
+             else{
+              return res.status(400).json({
+                success:false,
+                message:"password is incorrect"
+              })
+             }
             }
             else{
               return res.status(404).json({

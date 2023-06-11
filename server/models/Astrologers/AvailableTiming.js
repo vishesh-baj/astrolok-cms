@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const AstrologerModel = require("./AstrologerModel");
+const AstrologerModel = require("./AstrologerPersonalDetailModel");
 
 const availableTimingSchema = mongoose.Schema({
 

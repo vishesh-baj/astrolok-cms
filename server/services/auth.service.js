@@ -1,4 +1,4 @@
-const AstrologerModel = require("../models/Astrologers/AstrologerModel");
+const AstrologerModel = require("../models/Astrologers/AstrologerPersonalDetailModel");
 const Admindetails = require("../models/admin/Admindetails");
 const Usermodel = require("../models/users/Usermodel");
 const bcrypt = require("bcrypt");
@@ -123,12 +123,7 @@ class AuthService {
 
   async login(password, loginPerson, res) {
     try {
-      if (!(await bcrypt.compare(password, loginPerson.password))) {
-        return res.status(400).json({
-          success: false,
-          message: "password is incorrect",
-        });
-      } else {
+      if ((await bcrypt.compare(password, loginPerson.password))) {
         const token = jwt.sign(
           { id: loginPerson._id, role: loginPerson.role },
           process.env.SECRET_KEY,
@@ -144,13 +139,17 @@ class AuthService {
           httpOnly: true,
         };
 
-        return res.status(200).json({
+        return {
+          details:loginPerson,
           token: token,
           options: options,
           success: true,
           id: loginPerson._id,
           role: loginPerson.role,
-        });
+        }
+     
+      } else {
+        return false
       }
     } catch (error) {
       res.status(500).json({

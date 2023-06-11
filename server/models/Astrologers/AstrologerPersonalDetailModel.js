@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const AstrologerAccountModel = require("./AstrologerAccountModel");
 
-const AstrologerSchema = new mongoose.Schema(
+const AstrologerPersonalDetailModelSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -75,6 +75,6 @@ const AstrologerSchema = new mongoose.Schema(
 );
 
 // add the properties of AstrologerAccountModel to AstrologerSchema
-AstrologerSchema.add(AstrologerAccountModel.schema);
+AstrologerPersonalDetailModelSchema.add(AstrologerAccountModel.schema);
 
-module.exports = mongoose.model("AstroPersonalDetails", AstrologerSchema);
+module.exports = mongoose.model("AstrologerPersonalDetailModelSchema", AstrologerPersonalDetailModelSchema);
