@@ -18,18 +18,21 @@ const SignupPage = () => {
 
   const onSubmit = async (data) => {
     if (data["confirmPassword"]) {
-      const response = await API_WRAPPER.post("/api/register", {
-        name: data?.name,
-        email: data?.email,
-        mobile: data?.number,
-        password: data?.password,
-        role: "user",
-      });
-      console.log("REGISTER RESPONSE: ", response);
+      try {
+        const response = await API_WRAPPER.post("/api/register", {
+          name: data?.name,
+          email: data?.email,
+          mobile: data?.number,
+          password: data?.password,
+          role: "user",
+        });
+        console.log("REGISTER RESPONSE: ", response);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
-  
   return (
     <div className="w-screen h-screen flex">
       <div className="flex absolute -top-16 left-5 justify-center items-center p-4 mt-16">

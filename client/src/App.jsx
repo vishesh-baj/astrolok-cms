@@ -1,8 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { LoginPage, ForgetPasswordPage, SignupPage } from "./pages";
+import {
+  LoginPage,
+  ForgetPasswordPage,
+  SignupPage,
+  UserDashboard,
+} from "./pages";
 import { PATHS } from "./router/paths";
-// import MainRoutes from "./router/routes";
-// main app
+import ProtectedRoute from "./router/ProtectedRoute";
+// import { MainRoutes } from "./router/routes";
+
 const App = () => {
   return (
     <div className="font-body">
@@ -11,6 +17,14 @@ const App = () => {
         <Route element={<LoginPage />} path={PATHS.login} />
         <Route element={<SignupPage />} path={PATHS.signupPage} />
         <Route element={<ForgetPasswordPage />} path={PATHS.forgetPassword} />
+        <Route
+          element={
+            <ProtectedRoute roleRequired={"USER"}>
+              <UserDashboard />
+            </ProtectedRoute>
+          }
+          path={PATHS.userDashboard}
+        />
       </Routes>
     </div>
   );

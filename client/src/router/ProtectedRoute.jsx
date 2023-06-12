@@ -29,7 +29,7 @@ const ProtectedRoute = ({ roleRequired }) => {
 
   // if the role required is there or not
   if (roleRequired) {
-    console.log("ROLE REQUIRED: ", roleRequired);
+    console.log("ROLE REQUIRED: ", roleRequired, role);
     return auth ? (
       roleRequired === role ? (
         <Outlet />

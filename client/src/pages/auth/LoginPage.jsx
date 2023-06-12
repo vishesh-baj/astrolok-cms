@@ -2,7 +2,7 @@ import Banner from "../../assets/banner.svg";
 import AstrolokIcon from "../../assets/astrolokLogo.png";
 import GoogleIcon from "../../assets/googleIcon.svg";
 import FacebookIcon from "../../assets/facebookIcon.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { PATHS } from "../../router/paths";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,8 +11,6 @@ import { API_WRAPPER } from "../../api";
 
 // login page
 const LoginPage = () => {
-  const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -25,7 +23,6 @@ const LoginPage = () => {
     console.log("RESPONSE: ", res.data);
     if (res?.data) {
       localStorage.setItem("user", JSON.stringify({ role: "USER" }));
-      navigate(PATHS.userDashboard);
     }
 
     // navigate(PATHS.userDashboard);
