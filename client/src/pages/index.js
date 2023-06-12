@@ -35,6 +35,7 @@ export { default as AdminUsersList } from "./admin/AdminUsersList";
 export { default as ForgetPasswordPage } from "./auth/ForgotPassword";
 export { default as LoginPage } from "./auth/LoginPage";
 export { default as SignupPage } from "./auth/SignupPage";
+export { default as PermissionDenied } from "./auth/PermissionDenied";
 
 // experimental
 // export { default as HomePage } from "./HomePage";

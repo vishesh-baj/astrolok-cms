@@ -14,7 +14,7 @@ export const PATHS = {
   astrologerBlog: "/astrologer-blog",
   astrologerChargeAmount: "/astrologer-charge-amount",
   astrologerConsultationFees: "/astrologer-consultation-fees",
-  astrologerDashboasrd: "/astrologer-dashboard",
+  astrologerDashboard: "/astrologer-dashboard",
   astrologerGoLive: "/astrologer-go-live",
   astrologerProfile: "/astrolobger-profile",
   astrologerReports: "/astrologer-reports",
@@ -36,6 +36,7 @@ export const PATHS = {
   forgetPassword: "/forget-password",
   login: "/login",
   signupPage: "/signup-page",
+  permissionDenied: "/permission-denied",
 
   // experimental
   root: "/",

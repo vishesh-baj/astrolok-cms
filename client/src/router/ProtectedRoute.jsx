@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Navigate, Outlet } from "react-router-dom";
-
+import { PATHS } from "./paths";
 const useAuth = () => {
   // get item from localstorage
   let user;
@@ -22,7 +22,7 @@ const useAuth = () => {
   }
 };
 
-const ProtectedRoutes = ({ roleRequired }) => {
+const ProtectedRoute = ({ roleRequired }) => {
   const { auth, role } = useAuth();
 
   // if the role required is there or not
@@ -31,18 +31,19 @@ const ProtectedRoutes = ({ roleRequired }) => {
       roleRequired === role ? (
         <Outlet />
       ) : (
-        <Navigate to="/denied" />
+        <Navigate to={PATHS.permissionDenied} />
       )
     ) : (
-      <Navigate to="/login" />
+      <Navigate to={PATHS.login} />
     );
   } else {
-    return auth ? <Outlet /> : <Navigate to="/login" />;
+    return auth ? <Outlet /> : <Navigate to={PATHS.login} />;
   }
 };
 
-ProtectedRoutes.propTypes = {
-  roleRequired: PropTypes.string, // Assuming roleRequired is a string
+ProtectedRoute.propTypes = {
+  // Assuming roleRequired is a string
+  roleRequired: PropTypes.string,
 };
 
-export default ProtectedRoutes;
+export default ProtectedRoute;
