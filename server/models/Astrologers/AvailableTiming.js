@@ -1,33 +1,88 @@
 const mongoose = require("mongoose");
-const AstrologerModel = require("./AstrologerPersonalDetailModel");
+const AstrologerPersonalDetailModel = require("./AstrologerPersonalDetailModel");
 
 const availableTimingSchema = mongoose.Schema({
-  Day: {
-    type: String,
-    enum: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    require: true,
-    default: "",
-  },
-  status: {
-    type: Boolean,
+  astrologerID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: AstrologerPersonalDetailModel // use the model name as a string for the ref option
+},
+  monday: {
+    type:Boolean,
     require: true,
     default: false,
+    startTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    endTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    breakOneStart: { type: String, min: 0, max: 23, default:null },
+    breakOneEnd: { type: String, min: 0, max: 23, default:null },
+    breakTwoStart: { type: String, min: 0, max: 23, default:null },
+    breakTwoEnd: { type: String, min: 0, max: 23, default:null },
   },
-  startTime: { type: String, min: 0, max: 23, required: true }, // hour of the day
-  endTime: { type: String, min: 0, max: 23, required: true }, // hour of the day
-  lunchTimeIn: { type: String, min: 0, max: 23, required: true },
-  lunchTimeOut: { type: String, min: 0, max: 23, required: true },
-  teaTimeIn: { type: String, min: 0, max: 23, required: true },
-  teaTimeOut: { type: String, min: 0, max: 23, required: true },
-  bookedBy: { type: mongoose.Schema.Types.ObjectId, ref: AstrologerModel }, // optional reference to the user who booked the slot
+  tuesday: {
+    type:Boolean,
+    require: true,
+    default: false,
+    startTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    endTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    breakOneStart: { type: String, min: 0, max: 23, default:null },
+    breakOneEnd: { type: String, min: 0, max: 23, default:null },
+    breakTwoStart: { type: String, min: 0, max: 23, default:null },
+    breakTwoEnd: { type: String, min: 0, max: 23, default:null },
+  },
+  wednesday: {
+    type:Boolean,
+    require: true,
+    default: false,
+    startTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    endTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    breakIneStart: { type: String, min: 0, max: 23, default:null },
+    breakOneEnd: { type: String, min: 0, max: 23, default:null },
+    breakTwoStart: { type: String, min: 0, max: 23, default:null },
+    breakTwoEnd: { type: String, min: 0, max: 23, default:null },
+  },
+  Thrusday: {
+    type:Boolean,
+    require: true,
+    default: false,
+    startTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    endTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    breakOneStart: { type: String, min: 0, max: 23, default:null },
+    breakOneEnd: { type: String, min: 0, max: 23, default:null },
+    breakTwoStart: { type: String, min: 0, max: 23, default:null },
+    breakTwoEnd: { type: String, min: 0, max: 23, default:null },
+  },
+  friday: {
+    type:Boolean,
+    require: true,
+    default: false,
+    startTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    endTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    breakOneStart: { type: String, min: 0, max: 23, default:null },
+    breakOneEnd: { type: String, min: 0, max: 23, default:null },
+    breakTwoStart: { type: String, min: 0, max: 23, default:null },
+    breakTwoEnd: { type: String, min: 0, max: 23, default:null },
+  },
+  saturday: {
+    type:Boolean,
+    require: true,
+    default: false,
+    startTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    endTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    breakOneStart: { type: String, min: 0, max: 23, default:null },
+    breakOneEnd: { type: String, min: 0, max: 23, default:null },
+    breakTwoStart: { type: String, min: 0, max: 23, default:null },
+    breakTwoEnd: { type: String, min: 0, max: 23, default:null },
+  },
+  sunday: {
+    type:Boolean,
+    require: true,
+    default: false,
+    startTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    endTime: { type: String, min: 0, max: 23, default:null }, // hour of the day
+    breakOneStart: { type: String, min: 0, max: 23, default:null },
+    breakOneEnd: { type: String, min: 0, max: 23, default:null },
+    breakTwoStart: { type: String, min: 0, max: 23, default:null },
+    breakTwoEnd: { type: String, min: 0, max: 23, default:null },
+  },
   // other fields as needed
 });
 

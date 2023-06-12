@@ -19,7 +19,7 @@ class AstrologerController {
     // console.log(astrologerServiceInstance);
 
     try {
-      if (!(await this.globalService.checkThisApiIsAllowedOrNot(req,"astrologer"))) {
+      if (!(await this.globalService.checkThisApiIsAllowedOrNot(req, "astrologer"))) {
         res.status(403).json({
           success: false,
           messsge: "this route is for astrologer",
@@ -134,6 +134,127 @@ class AstrologerController {
       });
     }
   };
+
+  // this is a get route
+  getAvailableTiming = async (req, res) => {
+    try {
+      const astrologerID = req.params.id || req.user._id
+      if (!astrologerID) {
+        return res.status(404).json({
+          success: false,
+          message: "astrologerId not found"
+        })
+      }
+      else {
+        const data = await this.astrologerServiceInstance.getAstrologerAvailableTiming(astrologerID)
+
+        // this handle the error caused in try catch in service
+        if (data?.error) {
+          return res.status(500).json({
+            data
+          })
+        }
+        if (data?.success) {
+          return res.status(data?.errorCode || 500).json({
+            success: data?.success,
+            data: data?.data,
+
+          })
+        }
+        else {
+          return res.status(data?.errorCode || 500).json({
+            success: data?.success,
+            message: data?.message,
+            data: data?.data,
+          })
+        }
+      }
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        error: error
+      })
+    }
+  }
+
+  // this is too set available timing
+  setAvailableTiming = async (req, res) => {
+   try {
+    const newData = req.body;
+    const astrologerID = req.user._id
+    console.log(newData);
+    if (!newData) {
+      return res.status(404).json({
+        success: false,
+        message: "please send some data"
+      })
+    }
+    else {
+      const newData = await this.astrologerServiceInstance.setAvailableTiming(astrologerID, newData)
+
+      // this is the error caused in try catch of the service
+
+      if (newData?.error) {
+        res.status(500).json({
+          success: false,
+          message: error
+        })
+      }
+      else {
+        res.status(newData?.errorCode).json({
+          newData
+        })
+      }
+
+    }
+   } catch (error) {
+    return res.status(500).json({
+      success:false,
+      error:error
+    })
+   }
+  }
+
+
+  // its underConstruction
+  //   availableTimings = async (req, res) => {
+  //   console.log("iamworking");
+  //   try {
+  //     const bookedBy = req.user._id;
+  //     let availableTimingData = await AvailableTiming.find({ bookedBy });
+  //     const { data } = req.body;
+  //     console.log(data);
+  //     if (data) {
+  //       for (let i = 0; i < data.length; i++) {
+  //         // this below upsert:true is creating new docs if not available so the whole code says that update old docs and if not present create the new onces
+  //         await AvailableTiming.updateMany(
+  //           { Day: data[i].Day, status: data[i].status, bookedBy: req.user._id },
+  //           data[i],
+  //           { upsert: true }
+  //         );
+  //       }
+
+  //       //   message:await AvailableTiming.find({bookedBy}) is for updated data
+  //       return res.status(200).json({
+  //         success: true,
+  //         message: await AvailableTiming.find({ bookedBy }),
+  //       });
+  //     } else {
+  //       res.status(404).json({
+  //         success: false,
+  //         message: "data not found",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     res.status(500).json({
+  //       success: false,
+  //       message: error.message,
+  //     });
+  //   }
+  // };
+
+
+
 }
 module.exports = AstrologerController;
 
@@ -181,41 +302,6 @@ module.exports = AstrologerController;
 // };
 
 // // we dont need to create here a different route to update value or get default value as we have covered in this.
-// exports.availableTimings = async (req, res) => {
-//   console.log("iamworking");
-//   try {
-//     const bookedBy = req.user._id;
-//     let availableTimingData = await AvailableTiming.find({ bookedBy });
-//     const { data } = req.body;
-//     console.log(data);
-//     if (data) {
-//       for (let i = 0; i < data.length; i++) {
-//         // this below upsert:true is creating new docs if not available so the whole code says that update old docs and if not present create the new onces
-//         await AvailableTiming.updateMany(
-//           { Day: data[i].Day, status: data[i].status, bookedBy: req.user._id },
-//           data[i],
-//           { upsert: true }
-//         );
-//       }
-
-//       //   message:await AvailableTiming.find({bookedBy}) is for updated data
-//       return res.status(200).json({
-//         success: true,
-//         message: await AvailableTiming.find({ bookedBy }),
-//       });
-//     } else {
-//       res.status(404).json({
-//         success: false,
-//         message: "data not found",
-//       });
-//     }
-//   } catch (error) {
-//     res.status(500).json({
-//       success: false,
-//       message: error.message,
-//     });
-//   }
-// };
 
 // exports.getavailableTimings = async (req, res) => {
 //   try {
