@@ -179,10 +179,12 @@ class AstrologerController {
 
   // this is too set available timing
   setAvailableTiming = async (req, res) => {
-   try {
-    const newData = req.body;
-    const astrologerID = req.user._id
-    console.log(newData);
+    try {
+      const {newData} = req.body;
+console.log(newData);
+
+      const astrologerID = req.user._id
+      console.log("1");
     if (!newData) {
       return res.status(404).json({
         success: false,
@@ -190,24 +192,22 @@ class AstrologerController {
       })
     }
     else {
-      const newData = await this.astrologerServiceInstance.setAvailableTiming(astrologerID, newData)
+      const data = await this.astrologerServiceInstance.setAvailableTiming(astrologerID, newData)
 
+
+    
       // this is the error caused in try catch of the service
-
-      if (newData?.error) {
-        res.status(500).json({
-          success: false,
-          message: error
-        })
+      if (data?.error) {
+        console.log("this is error from service catch but handled in controller");
+        res.status(500).json(data)
       }
       else {
-        res.status(newData?.errorCode).json({
-          newData
-        })
+        res.status(data?.errorCode).json(data)
       }
 
     }
    } catch (error) {
+    console.log(error);
     return res.status(500).json({
       success:false,
       error:error
@@ -215,6 +215,23 @@ class AstrologerController {
    }
   }
 
+  getAllAstrologers = async(req,res)=>{
+    try {
+      const data = await this.astrologerServiceInstance.getAllAstrologers()
+      if(data?.error){
+        return res.status(data?.errorCode).json(data)
+      }
+      else{
+       
+        return res.status(data?.errorCode).json(data)
+      }
+    } catch (error) {
+      return res.status(500).json({
+        success:false,
+         message:error
+      })
+    }
+  }
 
   // its underConstruction
   //   availableTimings = async (req, res) => {

@@ -42,7 +42,7 @@ class AstrologerService {
     } catch (error) {
       return {
         success: false,
-        error: error,
+        error: error?.message,
       };
     }
   }
@@ -73,7 +73,7 @@ class AstrologerService {
     } catch (error) {
       return {
         success: false,
-        error: error,
+        error: error?.message,
       };
     }
   }
@@ -104,49 +104,91 @@ class AstrologerService {
         success: false,
         message: "",
         errorCode: 500,
+        error: error?.message
+      })
+    }
+  }
+
+  async setAvailableTiming(astrologerID, days) {
+    console.log("3");
+
+    try {
+      const data = await AvailableTiming.findOne({ astrologerID })
+   
+       
+      if (!data) {
+        console.log("iam creating");
+        const resp = await AvailableTiming.create({
+          astrologerID,
+          days
+        })
+       
+       await resp.save();
+        return ({
+          success: true,
+          message: "New Data is created",
+          data: resp,
+          errorCode: 200,
+          error: false,
+        })
+      }
+
+      else {
+        console.log("iam updating");
+        const id = data._id
+      
+        const updatedData = await AvailableTiming.findByIdAndUpdate(id,days)
+     
+        return ({
+          success: true,
+          error: false,
+          message: "updated availalable timing",
+          errorCode: 200,
+          data: await AvailableTiming.findOne({ astrologerID })
+        })
+      }
+    } catch (error) {
+      console.log(error);
+      return ({
+        success: false,
+        message: error?.message,
+        errorCode: 500,
         error: error
       })
     }
   }
 
-  async setAvailableTiming(astrologerID,newData) {
-    try {
-      const data = await AvailableTiming.findOne({ astrologerID })
-    
-      if (!data) {
-        const resp = await AvailableTiming.create({
-          newData
-        })
-        await newData.save();
-        return({
-          success:true,
-          message:"New Data is created",
-          data:resp,
-          errorCode:200,
-          error:false,
-        })
-      }
+  async getAllAstrologers(){
+   try {
+    const allAstrologersData = await AstrologerPersonalDetailModel.find()
 
-      else {
-        const id =  data._id
-       const updatedData = await AvailableTiming.findByIdAndUpdate(id,{
-        newData
-       })
-       return({
-        success: true,
+
+    if(!allAstrologersData){
+        return({
+          message:"No data found",
+          success:false,
+          error:false,
+          errorCode: 404,
+          error: false,
+        })
+    }
+    else{
+      return({
+        success:true,
         error:false,
-        message: "updated availalable timing",
+        message:"All astrologer details",
         errorCode: 200,
-       })
-      }
-    } catch (error) {
-      return ({
-        success: false,
-        message: "",
-        errorCode: 500,
-        error: error
+        data:allAstrologersData,
       })
     }
+   } catch (error) {
+    return({
+      success:false,
+      error:true,
+      message:error?.message,
+      errorCode: 500,
+    })
+   } 
   }
 
 }
