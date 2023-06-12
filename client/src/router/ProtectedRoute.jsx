@@ -6,6 +6,7 @@ const useAuth = () => {
   // get item from localstorage
   let user;
   const _user = localStorage.getItem("user");
+  console.log("USER IN USE AUTH", _user);
   if (_user) {
     user = JSON.parse(_user);
     console.log("user", user);

@@ -7,6 +7,7 @@ import { PATHS } from "../../router/paths";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "../../validations";
+import { API_WRAPPER } from "../../api";
 
 const SignupPage = () => {
   const {
@@ -15,18 +16,20 @@ const SignupPage = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(signupSchema()) });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (data["confirmPassword"]) {
-      console.log("CONFIRM PASSWORD EXISTS IN OBJECT: ", {
+      const response = await API_WRAPPER.post("/api/register", {
         name: data?.name,
         email: data?.email,
-        number: data?.number,
+        mobile: data?.number,
         password: data?.password,
         role: "user",
       });
+      console.log("REGISTER RESPONSE: ", response);
     }
   };
 
+  
   return (
     <div className="w-screen h-screen flex">
       <div className="flex absolute -top-16 left-5 justify-center items-center p-4 mt-16">

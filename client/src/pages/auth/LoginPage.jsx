@@ -2,17 +2,16 @@ import Banner from "../../assets/banner.svg";
 import AstrolokIcon from "../../assets/astrolokLogo.png";
 import GoogleIcon from "../../assets/googleIcon.svg";
 import FacebookIcon from "../../assets/facebookIcon.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PATHS } from "../../router/paths";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validations";
 import { API_WRAPPER } from "../../api";
-import axios from "axios";
 
 // login page
 const LoginPage = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -24,9 +23,11 @@ const LoginPage = () => {
     console.log("LOGIN DATA: ", data);
     const res = await API_WRAPPER.post("/api/login", { ...data, role: "user" });
     console.log("RESPONSE: ", res.data);
+    if (res?.data) {
+      localStorage.setItem("user", JSON.stringify({ role: "USER" }));
+      navigate(PATHS.userDashboard);
+    }
 
-    // console.log(response);
-    // localStorage.setItem("user", JSON.stringify({ role: "USER" }));
     // navigate(PATHS.userDashboard);
   };
 
