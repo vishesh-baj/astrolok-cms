@@ -154,10 +154,19 @@ class AstrologerController {
             data
           })
         }
-        if (data?.success) {
-          return res.status(data?.errorCode || 500).json({
+
+        
+        if (data?.success) {  
+        
+        // we are doing this because i need to convert object of object to array of object so that it could be handle better in frontend
+          let daysArray = Object.entries(data?.data?.days).map(([key, value]) => {
+            return { day : key, data : value };
+          });
+          
+
+          return res.status(data?.errorCode || 200).json({
             success: data?.success,
-            data: data?.data,
+            data: daysArray,
 
           })
         }
@@ -215,6 +224,7 @@ console.log(newData);
    }
   }
 
+  // this is get route for all astrologers
   getAllAstrologers = async(req,res)=>{
     try {
       const data = await this.astrologerServiceInstance.getAllAstrologers()
@@ -232,6 +242,7 @@ console.log(newData);
       })
     }
   }
+  
 
   // its underConstruction
   //   availableTimings = async (req, res) => {
