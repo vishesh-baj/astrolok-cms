@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "../../validations";
 import { API_WRAPPER } from "../../api";
 
+// signup page specific to user
 const SignupPage = () => {
   const {
     register,
