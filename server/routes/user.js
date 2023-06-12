@@ -1,18 +1,19 @@
 const express = require("express");
 const userRoutes = express.Router();
-const { register,
-        login,
-        booking,
-        logout, } = require("../controllers/user");
+
 const { checkLoginOrNot } = require("../middleware/auth");
+const UserController = require("../controllers/user");
 
 userRoutes.get("/", (req, res) => {
     res.status(400).send("welcome to the user routes")
 })
 
-userRoutes.post("/register", register)
-userRoutes.post("/booking", checkLoginOrNot, booking)
-userRoutes.post("/logout", checkLoginOrNot, logout)
+const userController = new UserController
+
+
+userRoutes.post("/personalDetail", checkLoginOrNot,userController.personalDetailUpdate)
+userRoutes.get("/getpersonalDetail", checkLoginOrNot,userController.getpersonalDetail)
+// userRoutes.post("/booking", checkLoginOrNot, booking)
 
 
 module.exports = userRoutes

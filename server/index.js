@@ -41,9 +41,9 @@ app.use(express.json());
 
 // Routes
 app.use("/api/users",userRoutes)
-app.use("/api/astrologer",astrologerRoutes)
 app.use("/api/astrolok",astrolokRoutes)
 app.use("/api",authRoutes)
+app.use("/api/astrologer",astrologerRoutes)
 
 
 
