@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validations";
 import { API_WRAPPER } from "../../api";
+import { TextField } from "../../components";
 
 // login page
 const LoginPage = () => {
@@ -120,6 +121,7 @@ const LoginPage = () => {
           </Link>
         </div>
       </aside>
+      <TextField />
     </div>
   );
 };

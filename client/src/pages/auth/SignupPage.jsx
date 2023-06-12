@@ -93,6 +93,7 @@ const SignupPage = () => {
             />
             <p className="text-rose-600">{errors.email?.message}</p>
           </div>
+
           {/* user number */}
           <div>
             <label htmlFor="number" className="label">

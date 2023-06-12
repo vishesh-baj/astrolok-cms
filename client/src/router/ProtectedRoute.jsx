@@ -24,6 +24,7 @@ const useAuth = () => {
   }
 };
 
+// protected routes
 const ProtectedRoute = ({ roleRequired }) => {
   const { auth, role } = useAuth();
 
