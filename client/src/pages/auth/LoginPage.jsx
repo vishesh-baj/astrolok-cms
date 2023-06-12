@@ -7,14 +7,31 @@ import { PATHS } from "../../router/paths";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validations";
+// import { API_WRAPPER } from "../../api";
+import axios from "axios";
 
+// login page
 const LoginPage = () => {
+  // const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(loginSchema()) });
-  const onSubmit = (data) => console.log("LOGIN DATA: ", data);
+
+  const onSubmit = async (data) => {
+    console.log("LOGIN DATA: ", data);
+    const res = await axios.post("http://localhost:4000/api/login", {
+      ...data,
+      role: "user",
+    });
+    console.log("RESPONSE: ", res);
+
+    // console.log(response);
+    // localStorage.setItem("user", JSON.stringify({ role: "USER" }));
+    // navigate(PATHS.userDashboard);
+  };
 
   return (
     <div className="w-screen h-screen flex">
@@ -69,12 +86,15 @@ const LoginPage = () => {
             <label className="label">
               <span className="label-text">Password</span>
             </label>
-            <input type="text" className="input input-bordered w-full" />
+            <input
+              {...register("password")}
+              type="password"
+              className="input input-bordered w-full"
+            />
           </div>
           <div className="flex justify-between mt-4">
             <div className="flex justify-between gap-2 ">
               <input
-                {...register("password")}
                 name="password"
                 className="checkbox checkbox-info checkbox-sm bg-white"
                 type="checkbox"

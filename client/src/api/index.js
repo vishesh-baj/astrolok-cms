@@ -7,5 +7,3 @@ export const API_WRAPPER = axios.create({
     // Add any additional headers you need
   },
 });
-
-

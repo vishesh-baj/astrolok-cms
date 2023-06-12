@@ -1,7 +1,7 @@
 require("dotenv").config();
-const express = require("express")
+const express = require("express");
 const app = express();
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const DBconnection = require("./config/DB");
 const userRoutes = require("./routes/user");
 const cors = require("cors");
@@ -14,44 +14,25 @@ const authRoutes = require("./routes/auth");
 // DB start
 DBconnection();
 
-
 // middleware
-app.use(express.json())
+app.use(express.json());
 
 app.use(cors());
 
-
-
-app.get("/",(req,res)=>{
-    res.status(400).send("Welcome to Backend")
-})
-
-
+app.get("/", (req, res) => {
+  res.status(400).send("Welcome to Backend");
+});
 
 // middleware
 app.use(cookieParser());
 app.use(express.json());
 
-
-
-
-
-
-
-
 // Routes
-app.use("/api/users",userRoutes)
-app.use("/api/astrolok",astrolokRoutes)
-app.use("/api",authRoutes)
-app.use("/api/astrologer",astrologerRoutes)
+app.use("/api/users", userRoutes);
+app.use("/api/astrolok", astrolokRoutes);
+app.use("/api", authRoutes);
+app.use("/api/astrologer", astrologerRoutes);
 
-
-
-
-
-
-
-app.listen(process.env.PORT,()=>{
-  console.log("Server is running",process.env.PORT)
-})
-
+app.listen(process.env.PORT, () => {
+  console.log("Server is running", process.env.PORT);
+});

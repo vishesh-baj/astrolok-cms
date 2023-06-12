@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginPage, ForgetPasswordPage, SignupPage } from "./pages";
 import { PATHS } from "./router/paths";
+// import MainRoutes from "./router/routes";
 // main app
 const App = () => {
   return (
@@ -16,4 +17,3 @@ const App = () => {
 };
 
 export default App;
-

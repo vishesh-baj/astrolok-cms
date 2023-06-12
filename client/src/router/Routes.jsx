@@ -34,9 +34,9 @@ import {
   AdminReports,
   AdminServices,
   AdminUsersList,
-} from "./../pages";
+} from "../pages";
 
-const MainRoutes = () => {
+export const MainRoutes = () => {
   <Routes>
     {/* protected routes */}
     <Route path={PATHS.root} element={<ProtectedRoute />}>
@@ -88,6 +88,7 @@ const MainRoutes = () => {
         path={PATHS.astrologerConsultationFees}
         element={<AstrologerConsultationFees />}
       />
+
       {/* astrologer dashboard */}
       <Route
         path={PATHS.astrologerDashboard}
@@ -100,7 +101,7 @@ const MainRoutes = () => {
       {/* astrologer reports  */}
       <Route path={PATHS.astrologerReports} element={<AstrologerReports />} />
     </Route>
-
+    {/* all admin routes */}
     <Route element={<ProtectedRoute roleRequired={"ADMIN"} />}>
       {/* admin astrologer list */}
       <Route
@@ -142,5 +143,3 @@ const MainRoutes = () => {
     <Route path={PATHS.permissionDenied} element={<PermissionDenied />} />
   </Routes>;
 };
-
-export default MainRoutes;

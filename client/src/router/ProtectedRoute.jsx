@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Navigate, Outlet } from "react-router-dom";
 import { PATHS } from "./paths";
+
 const useAuth = () => {
   // get item from localstorage
   let user;
@@ -27,6 +28,7 @@ const ProtectedRoute = ({ roleRequired }) => {
 
   // if the role required is there or not
   if (roleRequired) {
+    console.log("ROLE REQUIRED: ", roleRequired);
     return auth ? (
       roleRequired === role ? (
         <Outlet />
