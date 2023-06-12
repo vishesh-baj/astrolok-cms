@@ -53,7 +53,8 @@ class AuthController {
   login = async (req, res) => {
 
     try {
-      const { email, password } = req.body
+      const { userName, password } = req.body
+      const email = userName;
       if (!email || !password) {
         return res.status(404).json({
           success: false,

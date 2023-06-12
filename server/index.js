@@ -36,9 +36,6 @@ app.use(express.json());
 
 
 
-
-
-
 // Routes
 app.use("/api/users",userRoutes)
 app.use("/api/astrolok",astrolokRoutes)

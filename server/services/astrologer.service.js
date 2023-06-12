@@ -1,4 +1,5 @@
 const AstrologerPersonalDetailModel = require("../models/Astrologers/AstrologerPersonalDetailModel");
+const AvailableTiming = require("../models/Astrologers/AvailableTiming");
 
 class AstrologerService {
   async charges(req, res) {
@@ -76,6 +77,78 @@ class AstrologerService {
       };
     }
   }
+
+  async getAstrologerAvailableTiming(astrologerID) {
+
+    try {
+      const data = await AvailableTiming.findOne({ astrologerID })
+
+
+      if (data) {
+        return ({
+          success: true,
+          data: data,
+          message: "",
+          errorCode: 200
+        })
+      }
+      else {
+        return ({
+          success: false,
+          message: "no data found",
+          errorCode: 404
+        })
+      }
+    } catch (error) {
+      return ({
+        success: false,
+        message: "",
+        errorCode: 500,
+        error: error
+      })
+    }
+  }
+
+  async setAvailableTiming(astrologerID,newData) {
+    try {
+      const data = await AvailableTiming.findOne({ astrologerID })
+    
+      if (!data) {
+        const resp = await AvailableTiming.create({
+          newData
+        })
+        await newData.save();
+        return({
+          success:true,
+          message:"New Data is created",
+          data:resp,
+          errorCode:200,
+          error:false,
+        })
+      }
+
+      else {
+        const id =  data._id
+       const updatedData = await AvailableTiming.findByIdAndUpdate(id,{
+        newData
+       })
+       return({
+        success: true,
+        error:false,
+        message: "updated availalable timing",
+        errorCode: 200,
+       })
+      }
+    } catch (error) {
+      return ({
+        success: false,
+        message: "",
+        errorCode: 500,
+        error: error
+      })
+    }
+  }
+
 }
 
 module.exports = AstrologerService;

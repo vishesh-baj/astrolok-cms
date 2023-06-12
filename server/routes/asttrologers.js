@@ -15,7 +15,12 @@ astrologerRoutes.get("/getcharges",checkLoginOrNot, astroController.getcharges)
 astrologerRoutes.get("/appointments", checkLoginOrNot, astroController.appointments)
 
 astrologerRoutes.post("/personalDetail", checkLoginOrNot, astroController.personalDetailUpdate)
+
 astrologerRoutes.get("/getpersonalDetail", checkLoginOrNot, astroController.getpersonalDetail)
+
+astrologerRoutes.get("/getAvailableTiming", checkLoginOrNot, astroController.getAvailableTiming)
+
+astrologerRoutes.post("/setAvailableTiming", astroController.setAvailableTiming)
 
 
 
