@@ -7,7 +7,7 @@ import { PATHS } from "../../router/paths";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validations";
-// import { API_WRAPPER } from "../../api";
+import { API_WRAPPER } from "../../api";
 import axios from "axios";
 
 // login page
@@ -22,11 +22,8 @@ const LoginPage = () => {
 
   const onSubmit = async (data) => {
     console.log("LOGIN DATA: ", data);
-    const res = await axios.post("http://localhost:4000/api/login", {
-      ...data,
-      role: "user",
-    });
-    console.log("RESPONSE: ", res);
+    const res = await API_WRAPPER.post("/api/login", { ...data, role: "user" });
+    console.log("RESPONSE: ", res.data);
 
     // console.log(response);
     // localStorage.setItem("user", JSON.stringify({ role: "USER" }));
