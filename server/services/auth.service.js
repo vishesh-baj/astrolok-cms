@@ -126,42 +126,43 @@ class AuthService {
    async login(password, loginPerson, res) {
 
       try {
-         if (!(await bcrypt.compare(password, loginPerson.password))) {
-           
-            return res.status(400).json({
-               success: false,
-               message: "password is incorrect",
-            });
-         }
-         else {
-            const token = jwt.sign(
-               { id: loginPerson._id, role: loginPerson.role },
-               process.env.SECRET_KEY,
-               { expiresIn: "2h" }
-            );
-            loginPerson.password = undefined;
-            // userDetails.token = token
+         if ((await bcrypt.compare(password, loginPerson.password))) {
+          const token = jwt.sign(
+            { id: loginPerson._id, role: loginPerson.role },
+            process.env.SECRET_KEY,
+            { expiresIn: "2h" }
+         );
+         loginPerson.password = undefined;
+         // userDetails.token = token
 
-        const options = {
-          // i am currently removing domain as in postman it is not creating token in cookies
-          // domain: process.env.REACT_APP_URL,
-          expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-          httpOnly: true,
-        };
+     const options = {
+       // i am currently removing domain as in postman it is not creating token in cookies
+       // domain: process.env.REACT_APP_URL,
+       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+       httpOnly: true,
+     };
 
-            return res.status(200).json({
-               token: token,
-               options: options,
-               success: true,
-               id: loginPerson._id,
-               role: loginPerson.role,
-            });
+         return{
+            token: token,
+            options: options,
+            success: true,
+            id: loginPerson._id,
+            role: loginPerson.role,
+         } 
+        }
+        else {
+          return {
+            statusCode:404,
+             success: false,
+             message: "password is incorrect",
+          }
          }
       } catch (error) {
-         res.status(500).json({
-            success: false,
-            message: error
-         })
+        return{
+          statusCode:500,
+          success:false,
+          message:error
+        }
       }
    }
 

@@ -1,7 +1,10 @@
 require("dotenv").config;
 
-//importing class of auth Service
-const AuthService = require("../services/auth.service");
+
+
+//importing class of auth Service 
+const AuthService = require("../services/auth.service")
+
 
 class AuthController {
   authSeriviceInstance = new AuthService();
@@ -41,41 +44,11 @@ class AuthController {
           })
         }
 
-      if (response === "user not present") {
-        const newUserCreated = await this.authSeriviceInstance.createNewUser(
-          req.body,
-          res
-        );
-        if (newUserCreated) {
-          return res.status(200).json({
-            success: true,
-            message: newUserCreated,
-          });
-        } else {
-          return res.status(404).json({
-            success: false,
-            message: "user not created",
-          });
-        }
-      } else if (response === "astrologer not present") {
-        const newAstrologerCreated =
-          await this.authSeriviceInstance.createNewAstrologer(req.body, res);
-        if (newAstrologerCreated) {
-          return res.status(200).json({
-            success: true,
-            message: newAstrologerCreated,
-          });
-        } else {
-          return res.status(404).json({
-            success: false,
-            message: "astrologer not created",
-          });
-        }
       }
     } catch (error) {
-      res.status(400).send(error.message);
+      res.status(400).send(error.message)
     }
-  };
+  }
 
   login = async (req, res) => {
 
@@ -94,10 +67,10 @@ class AuthController {
         const userExist = await this.authSeriviceInstance.findUserbyEmail(email, res);
         if (userExist) {
           const data = await this.authSeriviceInstance.login(password, userExist, res);
-          if (data === "password is incorrect") {
-            return res.status(400).json({
-              success: false,
-              message: "password is incorrect"
+          if (!data?.success) {
+            return res.status(data?.statusCode).json({
+              success: data?.success,
+              message: data?.message
             })
           }
           else {
@@ -108,16 +81,18 @@ class AuthController {
           }
 
         }
-
         // as it is not user we will check for astrologer
         else {
           const astrologerExist = await this.authSeriviceInstance.findAstrologerByEmail(email, res)
           if (astrologerExist) {
             const data = await this.authSeriviceInstance.login(password, astrologerExist, res);
-            if (data === "password is incorrect") {
-              return res.status(400).json({
-                success: false,
-                message: "password is incorrect"
+
+
+           
+            if (!data?.success) {
+              return res.status(data?.statusCode || 500).json({
+                success: data?.success,
+                message: data?.message
               })
             }
             else {
@@ -131,11 +106,11 @@ class AuthController {
           // as it is not astrologer we will check for admin
           const adminExist = await this.authSeriviceInstance.findAdminByEmail(email, res)
           if (adminExist) {
-            const data = await this.authSeriviceInstance.login(password, astrologerExist, res);
-            if (data === "password is incorrect") {
-              return res.status(400).json({
-                success: false,
-                message: "password is incorrect"
+            const data = await this.authSeriviceInstance.login(password, adminExist, res);
+            if (!data?.success) {
+              return res.status(data?.statusCode).json({
+                success: data?.success,
+                message: data?.message
               })
             }
             else {
@@ -165,4 +140,6 @@ class AuthController {
 
 }
 
-module.exports = AuthController;
+
+
+module.exports = AuthController
