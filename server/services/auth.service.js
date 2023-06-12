@@ -137,20 +137,14 @@ class AuthService {
    async login(password, loginPerson, res) {
 
       try {
-         if (!(await bcrypt.compare(password, loginPerson.password))) {
+         if ((await bcrypt.compare(password, loginPerson.password))) {
            
-            return res.status(400).json({
-               success: false,
-               message: "password is incorrect",
-            });
-         }
-         else {
             const token = jwt.sign(
                { id: loginPerson._id, role: loginPerson.role },
                process.env.SECRET_KEY,
                { expiresIn: "2h" }
             );
-            loginPerson.password = undefined;
+            // loginPerson.password = undefined;
             // userDetails.token = token
 
             const options = {
@@ -160,13 +154,16 @@ class AuthService {
                httpOnly: true,
             };
 
-            return res.status(200).json({
+            return {
                token: token,
                options: options,
                success: true,
                id: loginPerson._id,
                role: loginPerson.role,
-            });
+            }
+         }
+         else {
+            return "password is incorrect"
          }
       } catch (error) {
          res.status(500).json({
