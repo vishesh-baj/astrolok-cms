@@ -1,52 +1,76 @@
-const Usermodel = require("../models/users/Usermodel");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const AstrologerModel = require("../models/Astrologers/AstrologerModel");
 const AstrologerBookingModel = require("../models/Astrologers/AstrologerConsultation");
 const mongoose = require('mongoose');
+const UserService = require("../services/user.service");
 
 
-
-exports.register = async (req, res) => {
+class UserController{
+    userServiceInstance = new UserService();
+   
+     //update personal Detail
+  personalDetailUpdate = async (req, res) => {
     try {
-        if (!req.body.name || !req.body.password || !req.body.email || !req.body.gender || !req.body.birthTime || !req.body.birthCountry || !req.body.birthCity || !req.body.birthDate || !req.body.mobile) {
+        if(!req.body || Object.keys(req.body).length === 0){
             return res.status(404).json({
-                success: false,
-                message: "some fields are missing",
-
+                success:false,
+                message:"please provide some data"
             })
         }
-        else if (await Usermodel.findOne({ email: req.body.email })) {
-            return res.status(401).json({
-                success: false,
-                message: "user already exists"
-            })
-        }
-        else {
-            // generate password
-            const salt = await bcrypt.genSalt(10);
-
-            const hashedPassword = await bcrypt.hash(req.body.password, salt);
-            req.body.password = hashedPassword;
-
-            // store in db
-            const newUser = await new Usermodel(req.body);
-            await newUser.save();
-            res.status(200).json({
-                success: true,
-                message: newUser,
-            });
-        }
-
-    } catch (error) {
-       return res.status(500).json({
-            success: false,
-            message: error.message,
+       
+      const resp =
+        await this.userServiceInstance.findUserByIdAndUpdate(
+          req.user._id,
+          req.body
+        );
+      console.log(resp);
+      if (resp?.success === true) {
+        return res.status(200).json({
+          success: true,
+          message: resp,
         });
+      } else {
+        return res.status(resp?.errorCode).json({
+          success: false,
+          message: resp,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: error,
+      });
     }
+  };
 
+  //get personal Detail this is get route
+  getpersonalDetail = async (req, res) => {
+    try {
+  
+      const resp = await this.userServiceInstance.findUserById(
+        req.user._id
+      );
+      console.log(resp);
+      if (resp?.success === true) {
+        return res.status(200).json({
+          success: true,
+          message: resp,
+        });
+      } else {
+        return res.status(resp?.errorCode).json({
+          success: false,
+          message: resp,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: error,
+      });
+    }
+  };
 }
 
+
+module.exports = UserController;
 
 
 
@@ -126,15 +150,3 @@ exports.booking = async (req, res) => {
     }
 }
 
-// logout
-exports.logout = async (req, res) => {
-    try {
-      res.clearCookie("token");
-      res.status(200).json({
-        success: true,
-        message: "You are logout",
-      });
-    } catch (error) {
-      res.status(400).send(error.message);
-    }
-  };

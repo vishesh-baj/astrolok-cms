@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const AstrologerModel = require("./AstrologerModel");
-const Usermodel = require("../users/Usermodel");
+const mongoose = require("mongoose")
+const AstrologerModel = require("./AstrologerPersonalDetailModel")
+const Usermodel = require("../users/Usermodel")
 
 const AstrologerBookingSchema = mongoose.Schema(
   {
