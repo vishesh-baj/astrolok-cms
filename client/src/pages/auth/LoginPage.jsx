@@ -18,21 +18,18 @@ const LoginPage = () => {
 
   return (
     <div className="w-screen h-screen flex">
+      <div className="flex absolute -top-16 left-5 justify-center items-center p-4 mt-16">
+        <div className="w-28 h-16">
+          <img className="image-full" src={AstrolokIcon} alt="astrolok logo" />
+        </div>
+      </div>
       {/* left  */}
       <aside className="hidden md:flex w-3/4 h-screen bg-gray-50 justify-center items-center">
         <img className="w-1/2 " src={Banner} alt="asatrolok banner" />
       </aside>
 
       {/* right */}
-      <aside className="flex flex-col gap-4 w-screen  md:w-[40%]  h-screen px-8 md:px-16">
-        <div className="flex justify-center items-center p-4 mt-16">
-          <img
-            className="image-full w-[12rem] h-[4rem]"
-            src={AstrolokIcon}
-            alt="astrolok logo"
-          />
-        </div>
-
+      <aside className="flex flex-col justify-center gap-4 w-screen  md:w-[40%]  h-screen px-8 md:px-16">
         <div className="px-4">
           <div className="flex flex-col gap-2 mb-4">
             <h3 className="font-semibold">Welcome to Asttrolok</h3>

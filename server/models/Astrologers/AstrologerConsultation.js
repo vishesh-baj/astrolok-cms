@@ -1,36 +1,42 @@
-const mongoose = require("mongoose")
-const AstrologerModel = require("./AstrologerModel")
-const Usermodel = require("../users/Usermodel")
+const mongoose = require("mongoose");
+const AstrologerModel = require("./AstrologerModel");
+const Usermodel = require("../users/Usermodel");
 
-const AstrologerBookingSchema = mongoose.Schema({
+const AstrologerBookingSchema = mongoose.Schema(
+  {
     astrologerId: {
-        type: mongoose.Schema.Types.ObjectId, ref: AstrologerModel,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: AstrologerModel,
     },
-
     userId: {
-        type: mongoose.Schema.Types.ObjectId, ref: Usermodel,
-        require: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Usermodel,
+      require: true,
     },
-    bookingtype:{
-        type:String,
-        require:true
+    bookingtype: {
+      type: String,
+      require: true,
     },
     bookingdate: {
-        type: String,
-        require: true,
+      type: String,
+      require: true,
     },
     bookingtime: {
-        type: String,
-        require: true,
+      type: String,
+      require: true,
     },
     status: {
-        type: Boolean,
-        default: true,
+      type: Boolean,
+      default: true,
     },
     waitingTime: {
-        type: String,
-        default: null,
-    }
-
-}, { timestamps: true })
-module.exports = mongoose.model("astrologerbookingschema", AstrologerBookingSchema);
+      type: String,
+      default: null,
+    },
+  },
+  { timestamps: true }
+);
+module.exports = mongoose.model(
+  "astrologerbookingschema",
+  AstrologerBookingSchema
+);
