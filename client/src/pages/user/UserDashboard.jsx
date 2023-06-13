@@ -1,12 +1,5 @@
-import { Sidebar } from "../../components";
-
 const UserDashboard = () => {
-  return (
-    <div>
-      <Sidebar />
-      UserDashboard
-    </div>
-  );
+  return <div>user dashboard</div>;
 };
 
 export default UserDashboard;
