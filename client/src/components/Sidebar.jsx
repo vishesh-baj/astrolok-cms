@@ -15,10 +15,6 @@ const Sidebar = () => {
         {/* Sidebar content */}
         <nav>
           <ul className="flex flex-col gap-4 space-y-2 mt-12">
-            {/* <li className="flex btn btn-info mx-2">
-              <HiHome />
-              {isExpanded && <span>Dashboard</span>}
-            </li> */}
             {sidebarMapping?.map(({ Icon, text }) => {
               return (
                 <SidebarItem
