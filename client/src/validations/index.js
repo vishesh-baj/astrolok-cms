@@ -5,11 +5,11 @@ export const loginSchema = () => {
     userName: yup
       .string("username must be a string")
       .min(3, "username cannot be less than three characters")
-      .max(24, "username cannot exceed 24 characters")
+      .max(32, "username cannot exceed 24 characters")
       .required("username is required"),
     password: yup
       .string("password must be a string")
-      .min(6,"password should be atleasy 6 characters long")
+      .min(6, "password should be atleasy 6 characters long")
       .required("password is required"),
   });
 };

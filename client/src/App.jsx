@@ -6,8 +6,6 @@ import {
   UserDashboard,
 } from "./pages";
 import { PATHS } from "./router/paths";
-import ProtectedRoute from "./router/ProtectedRoute";
-// import { MainRoutes } from "./router/routes";
 
 const App = () => {
   return (
@@ -17,14 +15,7 @@ const App = () => {
         <Route element={<LoginPage />} path={PATHS.login} />
         <Route element={<SignupPage />} path={PATHS.signupPage} />
         <Route element={<ForgetPasswordPage />} path={PATHS.forgetPassword} />
-        <Route
-          element={
-            <ProtectedRoute roleRequired={"USER"}>
-              <UserDashboard />
-            </ProtectedRoute>
-          }
-          path={PATHS.userDashboard}
-        />
+        <Route element={<UserDashboard />} path={PATHS.userDashboard} />
       </Routes>
     </div>
   );
