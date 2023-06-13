@@ -1,11 +1,4 @@
-import {
-  HiHome,
-  HiBriefcase,
-  HiUserCircle,
-  HiOutlineDocumentReport,
-} from "react-icons/hi";
 import { useSelector } from "react-redux";
-import { BsTelephone, BsViewList } from "react-icons/bs";
 import SidebarItem from "./SidebarItem";
 import { sidebarMapping } from "../mappings";
 
