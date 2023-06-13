@@ -27,6 +27,11 @@ astrologerRoutes.get("/getAllAstrologers",checkLoginOrNot, astroController.getAl
 
 
 
+
+
+
+
+
 // astrologerRoutes.post("/logout", checkLoginOrNot, logout)
 // astrologerRoutes.post("/changePassword", checkLoginOrNot, changePassword)
 // astrologerRoutes.post("/profileSettings", checkLoginOrNot, profileSettings)
