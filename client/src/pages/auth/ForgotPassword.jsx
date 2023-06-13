@@ -41,7 +41,7 @@ const ForgotPassword = () => {
           {/* username input */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email Address</span>
+              <span className="label-text font-bold">Email Address</span>
             </label>
             <input
               {...register("email")}

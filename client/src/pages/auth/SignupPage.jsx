@@ -49,16 +49,16 @@ const SignupPage = () => {
       <aside className="flex flex-col justify-center gap-4  w-[40%]  h-screen px-16 ">
         <div className="px-4">
           <div className="flex flex-col gap-2 mb-4">
-            <h3 className="font-semibold">Welcome to Asttrolok</h3>
+            <h3 className="font-bold">Welcome to Asttrolok</h3>
             <h4 className="text-gray-400 text-xs">Your Admin Dashboard</h4>
           </div>
           {/* login buttons */}
           <div className="flex justify-between gap-2">
-            <button className="btn text-[9px]  w-1/2 cursor-pointer font-extralight">
+            <button className="btn lowercase text-[9px]  w-1/2 cursor-pointer font-light">
               <img src={GoogleIcon} alt="google icon" />
               Signin with Google
             </button>
-            <button className="btn text-[9px] w-1/2 cursor-pointer font-extralight">
+            <button className="btn lowercase text-[9px] w-1/2 cursor-pointer font-light">
               <img src={FacebookIcon} alt="google icon" />
               Signin with FB
             </button>
@@ -71,7 +71,7 @@ const SignupPage = () => {
           {/* username input */}
           <div>
             <label className="label">
-              <span className="label-text">Name</span>
+              <span className="label-text font-bold">Name</span>
             </label>
             <input
               {...register("name")}
@@ -84,7 +84,7 @@ const SignupPage = () => {
           {/* user email */}
           <div>
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text font-bold">Email</span>
             </label>
             <input
               {...register("email")}
@@ -98,7 +98,7 @@ const SignupPage = () => {
           {/* user number */}
           <div>
             <label htmlFor="number" className="label">
-              <span className="label-text">Phone</span>
+              <span className="label-text font-bold">Phone</span>
             </label>
             <input
               {...register("number")}
@@ -112,7 +112,7 @@ const SignupPage = () => {
           {/* user password */}
           <div>
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text font-bold">Password</span>
             </label>
             <input
               {...register("password")}
@@ -125,7 +125,7 @@ const SignupPage = () => {
           {/* user confirm password */}
           <div>
             <label className="label">
-              <span className="label-text">Confirm Password</span>
+              <span className="label-text font-bold">Confirm Password</span>
             </label>
             <input
               {...register("confirmPassword")}
