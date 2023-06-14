@@ -13,6 +13,19 @@ const userController = new UserController
 
 userRoutes.post("/personalDetail", checkLoginOrNot,userController.personalDetailUpdate)
 userRoutes.get("/getpersonalDetail", checkLoginOrNot,userController.getpersonalDetail)
+
+
+userRoutes.get("/getAstrologerAllConsultation", checkLoginOrNot,userController.getAstrologerAllConsultation)
+
+userRoutes.post("/bookAstrologerForConsultation", checkLoginOrNot,userController.bookAstrologerForConsultation)
+
+userRoutes.post("/availableTimingOfDate", checkLoginOrNot,userController.availableTimingOfDate)
+
+userRoutes.get("/availableTimingOfDate", checkLoginOrNot,userController.availableTimingOfDate)
+
+
+
+
 // userRoutes.post("/booking", checkLoginOrNot, booking)
 
 

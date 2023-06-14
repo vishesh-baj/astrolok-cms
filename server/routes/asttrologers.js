@@ -20,7 +20,15 @@ astrologerRoutes.get("/getpersonalDetail", checkLoginOrNot, astroController.getp
 
 astrologerRoutes.get("/getAvailableTiming", checkLoginOrNot, astroController.getAvailableTiming)
 
-astrologerRoutes.post("/setAvailableTiming", astroController.setAvailableTiming)
+astrologerRoutes.post("/setAvailableTiming",checkLoginOrNot, astroController.setAvailableTiming)
+
+// to get all the astrologers
+astrologerRoutes.get("/getAllAstrologers",checkLoginOrNot, astroController.getAllAstrologers)
+
+
+
+
+
 
 
 

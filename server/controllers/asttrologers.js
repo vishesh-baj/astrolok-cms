@@ -154,10 +154,19 @@ class AstrologerController {
             data
           })
         }
+
+
         if (data?.success) {
-          return res.status(data?.errorCode || 500).json({
+
+          // we are doing this because i need to convert object of object to array of object so that it could be handle better in frontend
+          let daysArray = Object.entries(data?.data?.days).map(([key, value]) => {
+            return { day: key, data: value };
+          });
+
+
+          return res.status(data?.errorCode || 200).json({
             success: data?.success,
-            data: data?.data,
+            data: daysArray,
 
           })
         }
@@ -179,43 +188,63 @@ class AstrologerController {
 
   // this is too set available timing
   setAvailableTiming = async (req, res) => {
-   try {
-    const newData = req.body;
-    const astrologerID = req.user._id
-    console.log(newData);
-    if (!newData) {
-      return res.status(404).json({
-        success: false,
-        message: "please send some data"
-      })
-    }
-    else {
-      const newData = await this.astrologerServiceInstance.setAvailableTiming(astrologerID, newData)
+    try {
+      const { newData } = req.body;
+      console.log(newData);
 
-      // this is the error caused in try catch of the service
-
-      if (newData?.error) {
-        res.status(500).json({
+      const astrologerID = req.user._id
+      console.log("1");
+      if (!newData) {
+        return res.status(404).json({
           success: false,
-          message: error
+          message: "please send some data"
         })
       }
       else {
-        res.status(newData?.errorCode).json({
-          newData
-        })
-      }
+        const data = await this.astrologerServiceInstance.setAvailableTiming(astrologerID, newData)
 
+
+
+        // this is the error caused in try catch of the service
+        if (data?.error) {
+          console.log("this is error from service catch but handled in controller");
+          res.status(500).json(data)
+        }
+        else {
+          res.status(data?.errorCode).json(data)
+        }
+
+      }
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        success: false,
+        error: error
+      })
     }
-   } catch (error) {
-    return res.status(500).json({
-      success:false,
-      error:error
-    })
-   }
+  }
+
+  // this is get route for all astrologers
+  getAllAstrologers = async (req, res) => {
+    try {
+      const data = await this.astrologerServiceInstance.getAllAstrologers()
+      if (data?.error) {
+        return res.status(data?.errorCode).json(data)
+      }
+      else {
+
+        return res.status(data?.errorCode).json(data)
+      }
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error
+      })
+    }
   }
 
 
+  
   // its underConstruction
   //   availableTimings = async (req, res) => {
   //   console.log("iamworking");
