@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-gray-100 p-4">
+      <nav className=" p-4">
         <div className="flex justify-between items-center">
           {/* left side */}
           <div className="flex gap-4">
@@ -47,23 +47,28 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-
             <div className="flex justify-center items-center">
-              <button className="btn lowercase font-light">Consultation</button>
+              <button className="btn btn-ghost text-black lowercase font-light">
+                Consultation
+              </button>
             </div>
             <div className="flex justify-center items-center">
-              <button className="btn lowercase font-light">Sessions</button>
+              <button className="btn btn-ghost text-black lowercase font-light">
+                Sessions
+              </button>
             </div>
             <div className="flex justify-center items-center">
-              <button className="btn lowercase font-light">Booking List</button>
+              <button className="btn btn-ghost text-black lowercase font-light">
+                Booking List
+              </button>
             </div>
             <div className="flex justify-center items-center">
-              <button className="btn lowercase font-light">
+              <button className="btn btn-ghost text-black lowercase font-light">
                 Upcoming events
               </button>
             </div>
             <div className="flex justify-center items-center">
-              <button className="btn lowercase font-light">
+              <button className="btn btn-ghost text-black lowercase font-light">
                 Top Astrologers
               </button>
             </div>
@@ -81,23 +86,13 @@ const Navbar = () => {
               <div className="badge badge-primary badge-xs badge-info absolute top-0 left-2"></div>
             </button>
 
-            <div className="avatar placeholder">
+            <div className="avatar placeholder cursor-pointer">
               <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
                 <span>VB</span>
               </div>
             </div>
           </div>
         </div>
-
-        {/* <div className="flex items-center justify-between">
-          <button
-            className=" text-gray-500 focus:outline-none"
-            onClick={toggleDrawer}
-          >
-            {isExpanded ? <HiX /> : <HiMenu />}
-          </button>
-        </div> */}
-        {/* <GoSearch /> */}
       </nav>
     </div>
   );

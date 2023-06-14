@@ -10,7 +10,7 @@ const Sidebar = () => {
       {/* Sidebar */}
       <aside
         className={` text-white ${
-          isExpanded ? "w-64" : "w-0 md:w-16"
+          isExpanded ? "w-64  border-r-[1px]" : "w-0 md:w-16"
         } transition-all duration-300 ease-in-out`}
       >
         <div className="flex items-center  justify-center  px-8 py-4">

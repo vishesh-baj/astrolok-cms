@@ -13,7 +13,7 @@ const AppLayout = ({ children }) => {
         <Navbar />
 
         {/* Page content */}
-        <div className={`py-4`}>{children}</div>
+        <div className={`p-4`}>{children}</div>
       </div>
     </div>
   );
