@@ -82,12 +82,15 @@ const UserDashboard = () => {
       </div>
 
       {/* third row */}
-      <div className="flex gap-4">
-
+      <div className="flex gap-4 w-full bg-base-200 py-4 mt-4 rounded-lg">
+        {/* all consultation code */}
+        <div></div>
       </div>
     </div>
   );
 };
 
 export default UserDashboard;
+
+
 

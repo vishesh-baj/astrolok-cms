@@ -8,7 +8,7 @@ import { UserDashboard } from "./pages";
 import { PATHS } from "./router/paths";
 const App = () => {
   return (
-    <div data-theme="light" className="font-body">
+    <div data-theme="light" className="font-plus-jakarta-sans">
       <AppLayout>
         <Routes>
           <Route path={PATHS.userDashboard} element={<UserDashboard />} />
