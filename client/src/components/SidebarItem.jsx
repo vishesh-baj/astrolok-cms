@@ -5,8 +5,8 @@ const SidebarItem = ({ Icon, text, link, itemExpanded }) => {
     <NavLink
       className={({ isActive }) =>
         isActive
-          ? " btn  bg-[#5D87FF] hover:bg-[#a1b9fb] text-white w-full"
-          : "btn bg-white border-none w-full"
+          ? " btn  bg-[#5D87FF] hover:bg-[#a1b9fb] text-white"
+          : "btn bg-white border-none"
       }
       to={link}
     >
