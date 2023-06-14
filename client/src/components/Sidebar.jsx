@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import SidebarItem from "./SidebarItem";
 import { sidebarMapping } from "../mappings";
+import AstrolokLogo from "../assets/astrolokLogo.png";
 
 const Sidebar = () => {
   const isExpanded = useSelector((x) => x.appConfig.sidebarOpen);
@@ -8,10 +9,17 @@ const Sidebar = () => {
     <>
       {/* Sidebar */}
       <aside
-        className={`bg-blue-50 text-white ${
+        className={` text-white ${
           isExpanded ? "w-64" : "w-0 md:w-16"
         } transition-all duration-300 ease-in-out`}
       >
+        <div className="flex items-center  justify-center  px-8 py-4">
+          <img
+            className={`${isExpanded ? "w-[30-vw]" : "w-full"}`}
+            src={AstrolokLogo}
+            alt="asttrolok logo"
+          />
+        </div>
         {/* Sidebar content */}
         <nav>
           <ul className="flex flex-col gap-4 space-y-2 mt-12">
