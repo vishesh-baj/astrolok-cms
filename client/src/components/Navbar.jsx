@@ -46,6 +46,9 @@ const Navbar = () => {
                 <li>
                   <a>Course Two</a>
                 </li>
+                <li>
+                  <a>Course Three</a>
+                </li>
               </ul>
             </div>
             <div className="flex justify-center items-center">
@@ -82,6 +85,7 @@ const Navbar = () => {
             <button>
               <AiOutlineShopping />
             </button>
+
             <button className="relative">
               <BsBell />
               <div className="badge badge-primary badge-xs badge-info absolute top-0 left-2"></div>
