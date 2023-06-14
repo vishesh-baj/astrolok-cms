@@ -2,13 +2,17 @@
 // import { LoginPage, ForgetPasswordPage, SignupPage } from "./pages";
 // import { PATHS } from "./router/paths";
 
+import { Route, Routes } from "react-router-dom";
 import AppLayout from "./layouts/AppLAyout";
+import { UserDashboard } from "./pages";
+import { PATHS } from "./router/paths";
 const App = () => {
   return (
     <div data-theme="light" className="font-body">
       <AppLayout>
-        <h1 className="text-2xl font-bold">Welcome to the Dashboardsdd!</h1>
-        <p>This is the main content area.</p>
+        <Routes>
+          <Route path={PATHS.userDashboard} element={<UserDashboard />} />
+        </Routes>
       </AppLayout>
       {/* <Routes>
         <Route path={PATHS.root} element={<Navigate to={PATHS.login} />} />

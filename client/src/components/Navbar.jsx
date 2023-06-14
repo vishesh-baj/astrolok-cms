@@ -4,6 +4,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { GoSearch } from "react-icons/go";
 import { BsBell } from "react-icons/bs";
 import { AiOutlineShopping } from "react-icons/ai";
+
 const Navbar = () => {
   const dispatch = useDispatch();
   const isExpanded = useSelector((x) => x.appConfig.sidebarOpen);
