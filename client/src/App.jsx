@@ -14,6 +14,7 @@ const App = () => {
           <Route path={PATHS.userDashboard} element={<UserDashboard />} />
         </Routes>
       </AppLayout>
+
       {/* <Routes>
         <Route path={PATHS.root} element={<Navigate to={PATHS.login} />} />
         <Route element={<LoginPage />} path={PATHS.login} />
