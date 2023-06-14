@@ -20,7 +20,7 @@ export default {
     // }
     extend: {
       fontFamily: {
-        body: ["montserrat"],
+        "plus-jakarta-sans": ['"Plus Jakarta Sans"', "sans-serif"],
       },
     },
   },

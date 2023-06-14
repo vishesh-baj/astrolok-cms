@@ -2,7 +2,7 @@ import Banner from "../../assets/banner.svg";
 import AstrolokIcon from "../../assets/astrolokLogo.png";
 import GoogleIcon from "../../assets/googleIcon.svg";
 import FacebookIcon from "../../assets/facebookIcon.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PATHS } from "../../router/paths";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,6 +11,7 @@ import { API_WRAPPER } from "../../api";
 
 // login page
 const LoginPage = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -25,7 +26,7 @@ const LoginPage = () => {
       localStorage.setItem("user", JSON.stringify({ role: "USER" }));
     }
 
-    // navigate(PATHS.userDashboard);
+    navigate(PATHS.userDashboard);
   };
 
   return (
@@ -44,16 +45,16 @@ const LoginPage = () => {
       <aside className="flex flex-col justify-center gap-4 w-screen  md:w-[40%]  h-screen px-8 md:px-16">
         <div className="px-4">
           <div className="flex flex-col gap-2 mb-4">
-            <h3 className="font-semibold">Welcome to Asttrolok</h3>
+            <h3 className="font-bold">Welcome to Asttrolok</h3>
             <h4 className="text-gray-400 text-xs">Your Admin Dashboard</h4>
           </div>
           {/* login buttons */}
           <div className="flex justify-between gap-4">
-            <button className="btn flex text-[9px] font-extralight  w-1/2">
+            <button className="btn lowercase flex text-[10px] font-light w-1/2">
               <img src={GoogleIcon} alt="google icon" />
               Signin with Google
             </button>
-            <button className="btn text-[9px]   font-extralight w-1/2">
+            <button className="btn lowercase text-[10px] font-light w-1/2">
               <img src={FacebookIcon} alt="google icon" />
               Signin with FB
             </button>
@@ -66,45 +67,47 @@ const LoginPage = () => {
           {/* username input */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Username</span>
+              <span className="label-text font-bold">Username</span>
             </label>
             <input
               {...register("userName")}
               name="userName"
               type="text"
-              className="input input-bordered w-full"
+              className="input input-bordered border-2 w-full"
             />
             <p className="text-rose-600">{errors.userName?.message}</p>
           </div>
           {/* password input */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text font-bold">Password</span>
             </label>
             <input
               {...register("password")}
               type="password"
-              className="input input-bordered w-full"
+              className="input input-bordered border-2 w-full"
             />
           </div>
           <div className="flex justify-between mt-4">
             <div className="flex justify-between gap-2 ">
+              <p className="text-rose-600">{errors.password?.message}</p>
+            </div>
+          </div>
+          <div className="flex justify-between mt-4">
+            <div className="flex gap-4">
               <input
                 name="password"
                 className="checkbox checkbox-info checkbox-sm bg-white"
                 type="checkbox"
               />
-              <p className="text-rose-600">{errors.password?.message}</p>
-            </div>
-            <div className="flex">
               <span className="text-[14px]">Remember this device</span>
-              <Link
-                to={PATHS.forgetPassword}
-                className="text-[14px]  text-blue-600 cursor-pointer"
-              >
-                Forget Password?
-              </Link>
             </div>
+            <Link
+              to={PATHS.forgetPassword}
+              className="text-[14px]  text-blue-600 cursor-pointer"
+            >
+              Forget Password?
+            </Link>
           </div>
           <button
             type="submit"
