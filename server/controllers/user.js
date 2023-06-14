@@ -126,9 +126,6 @@ class UserController {
 
   }
 
-
-
-
   availableTimingOfDate = async (req, res) => {
     try {
       const { astrologerId } = req.query;
@@ -179,7 +176,7 @@ class UserController {
 
             const astrologerDetailsForCreatingSlots = daysOfAstrologer[daystoSelected.toLowerCase()];
 
-            console.log(astrologerDetailsForCreatingSlots, "this is sparta");
+          
 
             const slotsOFOrginalAstrologerTiming = await this.astrologerServiceInstance.getServiceScheduleSlots(30, astrologerDetailsForCreatingSlots.startTime, astrologerDetailsForCreatingSlots.endTime)
 
@@ -187,7 +184,10 @@ class UserController {
       
             const slotsOFBreak2_OfAstrologer = await this.astrologerServiceInstance.getServiceScheduleSlots(30, astrologerDetailsForCreatingSlots.breakTwoStart, astrologerDetailsForCreatingSlots.breakTwoEnd)
          
+
+
      return res.send({
+
       slotsOFOrginalAstrologerTiming:slotsOFOrginalAstrologerTiming?.data, slotsOFBreak1_OfAstrologer:slotsOFBreak1_OfAstrologer?.data, slotsOFBreak2_OfAstrologer:slotsOFBreak2_OfAstrologer?.data
      })
           }
@@ -207,6 +207,69 @@ class UserController {
     }
 
   }
+
+
+  getWallet = async (req,res)=>{
+    try {
+       
+  
+      const walletData = await this.userServiceInstance.getWalletData(req.user._id);
+
+     return res.status(walletData?.errorCode).json({walletData})
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        success:false,
+        message:error.message,
+        error:true,
+        errorCode:500,
+      })
+    }
+
+    
+  }
+
+  createWallet = async(req,res)=>{
+    try {
+      const newWallet = await this.userServiceInstance.createNewWallet(req.user._id)
+
+      return res.status(newWallet.errorCode).json({newWallet})
+    } catch (error) {
+      return res.status(500).json({
+        success:false,
+        error:true,
+        message:error.message,
+        data:""
+      })
+    }
+  }
+
+  addMoneyTowallet = async(req,res)=>{
+   try {
+    const {amount} = req.body;
+    if(!amount){
+      return res.status(404).json({
+        success:false,
+        message:"please provide the amount",
+        error:false,
+      })
+    }
+    else{
+      const newAmount = await this.userServiceInstance.addMoneyToWallet(req.user._id,amount)
+
+      return res.status(newAmount.errorCode).json({newAmount})
+    }
+   } catch (error) {
+    return res.status(500).json({
+      success:false,
+      message:error.message
+    })
+   }
+  }
+
+  
+ 
+
 }
 
 module.exports = UserController;

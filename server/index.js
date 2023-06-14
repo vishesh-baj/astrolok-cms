@@ -6,8 +6,6 @@ const DBconnection = require("./config/DB");
 const userRoutes = require("./routes/user");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-
-const astrolokRoutes = require("./routes/astrolok");
 const astrologerRoutes = require("./routes/asttrologers");
 const authRoutes = require("./routes/auth");
 
@@ -33,7 +31,6 @@ app.use(express.json());
 
 // Routes
 app.use("/api/users", userRoutes);
-app.use("/api/astrolok", astrolokRoutes);
 app.use("/api", authRoutes);
 app.use("/api/astrologer", astrologerRoutes);
 

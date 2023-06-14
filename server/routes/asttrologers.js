@@ -12,7 +12,6 @@ const astroController = new AstrologerController;
 
 astrologerRoutes.get("/getcharges",checkLoginOrNot, astroController.getcharges)
 
-astrologerRoutes.get("/appointments", checkLoginOrNot, astroController.appointments)
 
 astrologerRoutes.post("/personalDetail", checkLoginOrNot, astroController.personalDetailUpdate)
 

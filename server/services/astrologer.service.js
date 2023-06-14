@@ -112,7 +112,7 @@ class AstrologerService {
   }
 
   async setAvailableTiming(astrologerID, days) {
-    console.log("3");
+   
 
     try {
       const data = await AvailableTiming.findOne({ astrologerID })

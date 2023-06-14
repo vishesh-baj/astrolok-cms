@@ -6,25 +6,20 @@ const AvailableTiming = require("../models/Astrologers/AvailableTiming");
 const AstrologerBookingModel = require("../models/Astrologers/AstrologerConsultation");
 const Usermodel = require("../models/users/Usermodel");
 const AstrologerService = require("../services/astrologer.service");
-const GlobalService = require("../services/global.service");
-// const TotalChatCallReviewRatingOfAstrologer = require("../models/Astrologers/TotalChatCallReviewRatingOfAstrologer");
-// const BillGenerator = require("../models/Astrologers/BillGenerator");
+
+
+
 
 // register
 class AstrologerController {
   astrologerServiceInstance = new AstrologerService();
-  globalService = new GlobalService();
+ 
 
   getcharges = async (req, res) => {
     // console.log(astrologerServiceInstance);
 
     try {
-      if (!(await this.globalService.checkThisApiIsAllowedOrNot(req, "astrologer"))) {
-        res.status(403).json({
-          success: false,
-          messsge: "this route is for astrologer",
-        });
-      } else {
+      
         const data = await this.astrologerServiceInstance.charges(req, res);
         if (data) {
           res.status(200).json({
@@ -37,7 +32,6 @@ class AstrologerController {
             message: "charges not found",
           });
         }
-      }
     } catch (error) {
       res.status(500).json({
         success: false,
@@ -45,42 +39,7 @@ class AstrologerController {
       });
     }
   };
-
-  // appointments
-  // its under construction
-  appointments = async (req, res) => {
-    try {
-      if (!req.user._id) {
-        return res.status(404).json({
-          success: false,
-          message: "admin id not found",
-        });
-      } else {
-        const astrologerId = req.user._id;
-        const astrologerBookings = await AstrologerBookingModel.findOne({
-          astrologerId,
-        }).populate("bookingsId.userId");
-
-        if (astrologerBookings) {
-          return res.status(200).json({
-            success: true,
-            message: astrologerBookings,
-          });
-        } else {
-          return res.status(200).json({
-            success: true,
-            message: "no bookings found",
-          });
-        }
-      }
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        message: error.message,
-      });
-    }
-  };
-
+ 
   //update personal Detail
   personalDetailUpdate = async (req, res) => {
     try {
@@ -242,7 +201,10 @@ class AstrologerController {
       })
     }
   }
-
+  
+}
+module.exports = AstrologerController;
+  
 
   
   // its underConstruction
@@ -284,8 +246,6 @@ class AstrologerController {
 
 
 
-}
-module.exports = AstrologerController;
 
 // // logout
 // exports.logout = async (req, res) => {
