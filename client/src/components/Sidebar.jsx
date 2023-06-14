@@ -23,14 +23,16 @@ const Sidebar = () => {
         {/* Sidebar content */}
         <nav>
           <ul className="flex flex-col gap-4 space-y-2 mt-12">
-            {sidebarMapping?.map(({ Icon, text }) => {
+            {sidebarMapping?.map(({ Icon, text, navlink }) => {
               return (
-                <SidebarItem
-                  key={text}
-                  Icon={Icon}
-                  text={text}
-                  itemExpanded={isExpanded}
-                />
+                <li className="flex justify-center pl-6" key={text}>
+                  <SidebarItem
+                    Icon={Icon}
+                    text={text}
+                    itemExpanded={isExpanded}
+                    link={navlink}
+                  />
+                </li>
               );
             })}
           </ul>

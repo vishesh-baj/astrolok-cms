@@ -6,7 +6,10 @@ import AppLayout from "./layouts/AppLAyout";
 const App = () => {
   return (
     <div data-theme="light" className="font-body">
-      <AppLayout>app</AppLayout>
+      <AppLayout>
+        <h1 className="text-2xl font-bold">Welcome to the Dashboardsdd!</h1>
+        <p>This is the main content area.</p>
+      </AppLayout>
       {/* <Routes>
         <Route path={PATHS.root} element={<Navigate to={PATHS.login} />} />
         <Route element={<LoginPage />} path={PATHS.login} />

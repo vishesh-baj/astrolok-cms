@@ -1,5 +1,7 @@
+import PropTypes from "prop-types";
 import { Navbar, Sidebar } from "../components/";
-const PersistentNavigationDrawer = () => {
+
+const AppLayout = ({ children }) => {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -11,13 +13,14 @@ const PersistentNavigationDrawer = () => {
         <Navbar />
 
         {/* Page content */}
-        <div className={`py-4`}>
-          <h1 className="text-2xl font-bold">Welcome to the Dashboard!</h1>
-          <p>This is the main content area.</p>
-        </div>
+        <div className={`py-4`}>{children}</div>
       </div>
     </div>
   );
 };
 
-export default PersistentNavigationDrawer;
+AppLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default AppLayout;
