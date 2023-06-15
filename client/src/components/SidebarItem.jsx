@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
+
 const SidebarItem = ({ Icon, text, link, itemExpanded }) => {
   return (
     <NavLink

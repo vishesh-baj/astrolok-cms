@@ -4,7 +4,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { GoSearch } from "react-icons/go";
 import { BsBell } from "react-icons/bs";
 import { AiOutlineShopping } from "react-icons/ai";
-
+import { Dropdown } from "../components";
 const Navbar = () => {
   const dispatch = useDispatch();
   const isExpanded = useSelector((x) => x.appConfig.sidebarOpen);
@@ -32,25 +32,10 @@ const Navbar = () => {
               <GoSearch className="w-8 cursor-pointer" />
             </button>
 
-            <div className="dropdown dropdown-bottom  dropdown-hover">
-              <label tabIndex={0} className="btn m-1 lowercase font-light">
-                Courses
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <a>Course One </a>
-                </li>
-                <li>
-                  <a>Course Two</a>
-                </li>
-                <li>
-                  <a>Course Three</a>
-                </li>
-              </ul>
-            </div>
+            <Dropdown
+              itemsList={["Course one", "Course two ", "Course Three"]}
+              label="Courses"
+            />
             {/* mapping is required */}
             <div className="flex justify-center items-center">
               <button className="btn btn-ghost text-black lowercase font-light">

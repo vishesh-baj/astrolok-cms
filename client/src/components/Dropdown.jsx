@@ -2,17 +2,12 @@ import PropTypes from "prop-types";
 const Dropdown = ({ label, itemsList }) => {
   return (
     <div className="dropdown dropdown-bottom  dropdown-hover">
-      <label tabIndex={0} className="btn m-1 lowercase font-light">
-        {label}
-      </label>
-      <ul
-        tabIndex={0}
-        className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        {itemsList.map(({ name }, idx) => {
+      <label className="btn m-1 lowercase font-light">{label}</label>
+      <ul className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+        {itemsList.map((item, idx) => {
           return (
             <li key={idx}>
-              <a>{name}</a>
+              <a>{item}</a>
             </li>
           );
         })}
@@ -20,6 +15,7 @@ const Dropdown = ({ label, itemsList }) => {
     </div>
   );
 };
+
 Dropdown.propTypes = {
   label: PropTypes.string.isRequired,
   itemsList: PropTypes.arrayOf(
