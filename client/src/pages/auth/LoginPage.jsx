@@ -25,7 +25,6 @@ const LoginPage = () => {
     if (res?.data) {
       localStorage.setItem("user", JSON.stringify({ role: "USER" }));
     }
-
     navigate(PATHS.userDashboard);
   };
 
