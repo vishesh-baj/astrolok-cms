@@ -13,10 +13,12 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const isExpanded = useSelector((x) => x.appConfig.sidebarOpen);
   const darkMode = useSelector((x) => x.appConfig.darkMode);
+  // toggle app drawer
   const toggleDrawer = () => {
     dispatch(toggleSidebar());
   };
 
+  // toggle darkmode
   const handleDarkMode = () => {
     dispatch(toggleDarkMode());
     console.log("CLICKED ON DARK MODE", darkMode);
@@ -38,7 +40,10 @@ const Navbar = () => {
                 <HiMenu className="w-8" />
               )}
             </button>
-            <button>
+            <button
+              className="tooltip tooltip-info tooltip-bottom"
+              data-tip="search"
+            >
               <GoSearch className="w-8 cursor-pointer" />
             </button>
 
@@ -67,26 +72,33 @@ const Navbar = () => {
                 );
               }
             })}
-
-            {/* mapping is required */}
           </div>
           {/* right side */}
           <div
             className=" flex gap-4 justify-center
           "
           >
-            <button>
+            <button
+              className="tooltip tooltip-info tooltip-bottom"
+              data-tip="darkmode"
+            >
               {!darkMode ? (
                 <MdOutlineDarkMode onClick={handleDarkMode} />
               ) : (
                 <FiSun onClick={handleDarkMode} />
               )}
             </button>
-            <button>
+            <button
+              data-tip="cart"
+              className="tooltip tooltip-info tooltip-bottom"
+            >
               <AiOutlineShopping />
             </button>
 
-            <button className="relative">
+            <button
+              data-tip="Notification"
+              className="relative tooltip-info tooltip-bottom"
+            >
               <BsBell />
               <div className="badge badge-primary badge-xs badge-info absolute top-0 left-2"></div>
             </button>

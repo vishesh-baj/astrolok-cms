@@ -7,6 +7,7 @@ import AppLayout from "./layouts/AppLAyout";
 import { UserDashboard, UserProfile } from "./pages";
 import { PATHS } from "./router/paths";
 import { useSelector } from "react-redux";
+
 const App = () => {
   const darkMode = useSelector((x) => x.appConfig.darkMode);
   return (
