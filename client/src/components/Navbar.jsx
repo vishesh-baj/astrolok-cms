@@ -1,17 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "../features/appConfig/AppSlice";
+import { toggleSidebar, toggleDarkMode } from "../features/appConfig/AppSlice";
 import { HiMenu, HiX } from "react-icons/hi";
 import { GoSearch } from "react-icons/go";
 import { BsBell } from "react-icons/bs";
 import { AiOutlineShopping } from "react-icons/ai";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { FiSun } from "react-icons/fi";
 import { Dropdown } from "../components";
 import { navbarMapping } from "../mappings";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   const dispatch = useDispatch();
   const isExpanded = useSelector((x) => x.appConfig.sidebarOpen);
+  const darkMode = useSelector((x) => x.appConfig.darkMode);
   const toggleDrawer = () => {
     dispatch(toggleSidebar());
+  };
+
+  const handleDarkMode = () => {
+    dispatch(toggleDarkMode());
+    console.log("CLICKED ON DARK MODE", darkMode);
   };
 
   return (
@@ -64,9 +72,16 @@ const Navbar = () => {
           </div>
           {/* right side */}
           <div
-            className=" flex gap-4 justify-center ityems-center
+            className=" flex gap-4 justify-center
           "
           >
+            <button>
+              {!darkMode ? (
+                <MdOutlineDarkMode onClick={handleDarkMode} />
+              ) : (
+                <FiSun onClick={handleDarkMode} />
+              )}
+            </button>
             <button>
               <AiOutlineShopping />
             </button>
