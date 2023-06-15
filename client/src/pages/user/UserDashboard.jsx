@@ -82,10 +82,31 @@ const UserDashboard = () => {
       </div>
 
       {/* third row */}
-      <div className="flex gap-4 w-full bg-base-200 py-4 mt-4 rounded-lg">
+      <div className="flex gap-4 w-full bg-base-100 py-4 mt-4 rounded-lg">
         {/* all consultation code */}
-        <div className="p-4 ">
+        <div className="p-4 flex bg-teal-100 rounded-lg justify-between w-full">
           <h2 className="text-xl">Latest Courses</h2>
+          <span className="loading loading-ring loading-lg text-info"></span>
+        </div>
+      </div>
+
+      {/* fourth row */}
+      <div className="flex gap-4 mt-4">
+        <div className="w-full flex gap-4 justify between">
+          <div className="flex justify-between p-4 w-1/2 h-auto bg-teal-50">
+            <div>
+              <h4>Yearly Funds</h4>
+              <p className="text-sm text-gray-300 mt-4">Your yearly funds</p>
+            </div>
+            <span className="loading loading-ring loading-lg text-info"></span>
+          </div>
+          <div className="flex justify-between p-4 w-1/2 h-auto bg-teal-50">
+            <div>
+              <h4>Payment Gateways</h4>
+              <p className="text-sm text-gray-300">your payment gateways</p>
+            </div>
+            <span className="loading loading-ring loading-lg text-info"></span>
+          </div>
         </div>
       </div>
     </div>

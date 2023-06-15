@@ -3,6 +3,7 @@ import SidebarItem from "./SidebarItem";
 import { sidebarMapping } from "../mappings";
 import AstrolokLogo from "../assets/astrolokLogo.png";
 
+// sidebar
 const Sidebar = () => {
   const isExpanded = useSelector((x) => x.appConfig.sidebarOpen);
   return (
@@ -20,6 +21,7 @@ const Sidebar = () => {
             alt="asttrolok logo"
           />
         </div>
+
         {/* Sidebar content */}
         <nav>
           <ul className="flex flex-col gap-4 space-y-2 mt-12">
@@ -36,6 +38,7 @@ const Sidebar = () => {
               );
             })}
           </ul>
+          <h1>user profile button</h1>
         </nav>
       </aside>
     </>

@@ -51,6 +51,7 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
+            {/* mapping is required */}
             <div className="flex justify-center items-center">
               <button className="btn btn-ghost text-black lowercase font-light">
                 Consultation

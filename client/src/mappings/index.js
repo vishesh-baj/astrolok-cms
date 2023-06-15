@@ -1,7 +1,7 @@
 import {
   HiHome,
   HiBriefcase,
-  HiUserCircle,
+  // HiUserCircle,
   HiOutlineDocumentReport,
 } from "react-icons/hi";
 import { BsTelephone, BsViewList } from "react-icons/bs";
@@ -18,6 +18,8 @@ export const sidebarMapping = [
     text: "Birth Details",
     navlink: "/birth-details",
   },
+
+  // TODO: breaking UI need to be fixed
   {
     Icon: HiUserCircle,
     text: "Consultation List",
@@ -39,3 +41,6 @@ export const sidebarMapping = [
     navlink: "user reports",
   },
 ];
+
+// maps the navbar
+export const navbarMapping = [{}];
