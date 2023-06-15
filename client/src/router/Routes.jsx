@@ -37,6 +37,7 @@ import {
   AdminUsersList,
 } from "../pages";
 
+// main
 export const MainRoutes = () => {
   <Routes>
     {/* protected routes */}

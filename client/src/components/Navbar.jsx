@@ -9,6 +9,7 @@ import { FiSun } from "react-icons/fi";
 import { Dropdown } from "../components";
 import { navbarMapping } from "../mappings";
 import { Link } from "react-router-dom";
+
 const Navbar = () => {
   const dispatch = useDispatch();
   const isExpanded = useSelector((x) => x.appConfig.sidebarOpen);
@@ -25,7 +26,7 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <>
       <nav className=" p-4">
         <div className="flex justify-between items-center">
           {/* left side */}
@@ -47,7 +48,7 @@ const Navbar = () => {
               <GoSearch className="w-8 cursor-pointer" />
             </button>
 
-            {navbarMapping.map((item) => {
+            {navbarMapping?.map((item) => {
               if (item.type === "dropdown") {
                 return (
                   <Dropdown
@@ -111,7 +112,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    </div>
+    </>
   );
 };
 

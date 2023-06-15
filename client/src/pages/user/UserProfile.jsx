@@ -171,6 +171,7 @@ const UserProfile = () => {
                 />
               </div>
             </div>
+            {/* fourth row for personal details */}
           </div>
         </div>
       </section>

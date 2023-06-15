@@ -12,7 +12,7 @@ const SidebarItem = ({ Icon, text, link, itemExpanded }) => {
       to={link}
     >
       <Icon />
-      {itemExpanded && <span className="lowercase">{text}</span>}
+      {itemExpanded && <span className="lowercase font-light">{text}</span>}
     </NavLink>
   );
 };

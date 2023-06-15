@@ -90,7 +90,7 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      {/* fourth row */}
+      {/* forth row */}
       <div className="flex gap-4 mt-4">
         <div className="w-full flex gap-4 justify between">
           <div className="flex justify-between p-4 w-1/2 h-auto bg-teal-50">
