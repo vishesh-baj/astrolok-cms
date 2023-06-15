@@ -42,8 +42,10 @@ class UserController {
 
   //get personal Detail this is get route
   getpersonalDetail = async (req, res) => {
+        
     try {
       const resp = await this.userServiceInstance.findUserById(req.user._id);
+
       if (resp?.success === true) {
         return res.status(200).json({
           success: true,
@@ -290,8 +292,65 @@ class UserController {
    }
   }
 
+
+  // their is get rating api but it is in  global controller 
+  createRatingsAndReview = async(req,res)=>{
+     
+     try {
+      const {rating,review} = req.body;
+      const {astrologerId} = req.query;
+
+      
+      if(!rating || !review || !astrologerId){
+        return res.status(404).json({
+          success:false,
+          message:"please provide rating and review or astrologerId",
+          error:false,
+          data:""
+        })
+      }
+      else{
+        const newRatingsAndReview = await this.userServiceInstance.createNewRatingAndReview(rating,review,req.user._id,astrologerId)
+     
+     
+        return res.status(200).json(newRatingsAndReview)
+        
+
+      }
+     } catch (error) {
+      return res.status(500).json({
+        success:false,
+        error:true,
+        message:error.message,
+        data:"",
+        errorCode:500
+      })
+     }
+     
+
+  }
+
+
+  getRatingReviewByUser = async(req,res)=>{
+    try {
+        const ratingsAndReviews = await  this.userServiceInstance.getRatingAndReviewByUser(req.user._id)
+
+        return res.status(ratingsAndReviews?.errorCode).json({ratingsAndReviews})
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message,
+            errorCode: 500,
+            data: ""
+        })
+    }
+   
+
+
+
+}
   
- 
 
 }
 

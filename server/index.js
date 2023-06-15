@@ -8,6 +8,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const astrologerRoutes = require("./routes/asttrologers");
 const authRoutes = require("./routes/auth");
+const globalRoutes = require("./routes/global");
 
 // DB start
 DBconnection();
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api", authRoutes);
 app.use("/api/astrologer", astrologerRoutes);
+app.use("/api/global", globalRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log("Server is running", process.env.PORT);

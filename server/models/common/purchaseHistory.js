@@ -1,20 +1,20 @@
 const mongoose = require("mongoose");
-const AstrologerModel = require("../Astrologers/AstrologerModel");
+
 const Usermodel = require("../users/Usermodel");
 const courses = require("./courses");
 const AstrologerConsultation = require("../Astrologers/AstrologerConsultation");
+const AstrologerPersonalDetailModel = require("../Astrologers/AstrologerPersonalDetailModel");
 
 const purchaseHistory = mongoose.Schema({
 
     userId: {
         type: mongoose.Schema.Types.ObjectId, ref: Usermodel,
-        require: true,
     },
     astrologerId:{
-        type: mongoose.Schema.Types.ObjectId, ref: AstrologerModel,
+        type: mongoose.Schema.Types.ObjectId, ref: AstrologerPersonalDetailModel,
         default:null,
     },
-    Amount:{
+    amount:{
         type:Number,
         require:true,
         default:null,

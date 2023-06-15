@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const AstrologerModel = require("../Astrologers/AstrologerModel");
 const Usermodel = require("./Usermodel");
+const AstrologerPersonalDetailModel = require("../Astrologers/AstrologerPersonalDetailModel");
 
 const ratingReview = mongoose.Schema({
 
@@ -8,7 +8,7 @@ const ratingReview = mongoose.Schema({
     
     astrologerdetails: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: AstrologerModel // use the model name as a string for the ref option
+        ref: AstrologerPersonalDetailModel // use the model name as a string for the ref option
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId, 
@@ -16,12 +16,16 @@ const ratingReview = mongoose.Schema({
     },
     rating:{
         type:Number,
-        require:true,
         min:0,
-        max:0,
+        max:5,
     },
     review:{
         type:String,
+    },
+    // here status means it should be approved by astrologer then they will make status:true, then it will show on the client side
+    status:{
+        type:Boolean,
+        default:false,
     }
 
 

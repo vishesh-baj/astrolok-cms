@@ -19,21 +19,14 @@ class AuthController {
 
       if (response === "user not present") {
         const newUserCreated = await this.authSeriviceInstance.createNewUser(req.body, res)
+
+     
+
         if (newUserCreated) {
           // here we will create a wallet
           const newWalletCreated = await this.userServiceInstance.createNewWallet(newUserCreated?._id)
-
-          if (newWalletCreated?.errorCode !== 200) {
-            return res.status(newWalletCreated?.errorCode).json(newWalletCreated)
-          }
-
-          else {
-            return res.status(200).json({
-              success: true,
-              message: newUserCreated
-            })
-
-          }
+               console.log(newWalletCreated);
+          return res.status(newWalletCreated?.errorCode).json(newWalletCreated)
         }
         else {
           return res.status(404).json({

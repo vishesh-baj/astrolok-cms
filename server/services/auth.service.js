@@ -47,6 +47,10 @@ class AuthService {
       });
     }
   }
+
+
+
+
   async createNewUser(data, res) {
     try {
       // generate password
@@ -56,17 +60,22 @@ class AuthService {
       data.password = hashedPassword;
 
       // store in db
-      const newUser = await new Usermodel(data);
+      const newUser = await Usermodel.create(data);
+
+     
+      
 
       await newUser.save();
       return newUser;
     } catch (error) {
       res.status(500).json({
         success: false,
-        message: error,
+        message: error.message,
       });
     }
   }
+
+
   async createNewAstrologer(data, res) {
     try {
       // generate password
@@ -86,6 +95,8 @@ class AuthService {
       });
     }
   }
+
+
   async findUserbyEmail(email, res) {
     try {
       const userExist = await Usermodel.findOne({ email });
@@ -98,6 +109,8 @@ class AuthService {
       });
     }
   }
+
+
   async findAstrologerByEmail(email, res) {
     try {
       const astrologerExist = await AstrologerModel.findOne({ email });

@@ -5,13 +5,17 @@ const { checkLoginOrNot } = require("../middleware/auth");
 const UserController = require("../controllers/user");
 const GlobalController = require("../controllers/globalController");
 
-userRoutes.get("/", (req, res) => {
-    res.status(400).send("welcome to the user routes")
-})
 
 const userController = new UserController;
 
 const globalController = new GlobalController;
+
+
+
+userRoutes.get("/", (req, res) => {
+    res.status(400).send("welcome to the user routes")
+})
+
 
 
 
@@ -36,6 +40,9 @@ userRoutes.post("/createWallet", checkLoginOrNot,userController.createWallet)
 
 
 userRoutes.get("/allConsultationsOfUser", checkLoginOrNot,globalController.consultationsOfUser)
+
+userRoutes.post("/ratingsAndReview", checkLoginOrNot,userController.createRatingsAndReview)
+
 
 
 

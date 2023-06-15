@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-const AstrologerModel = require("../Astrologers/AstrologerModel");
+
 const Usermodel = require("../users/Usermodel");
-const wallet = require("../users/wallet");
+const wallet = require("../users/wallet.js");
+const AstrologerPersonalDetailModel = require("../Astrologers/AstrologerPersonalDetailModel");
 
 const courses = mongoose.Schema({
 
@@ -15,7 +16,7 @@ const courses = mongoose.Schema({
     createdBy:{
         teacher:{
             astrologerId:{
-                type: mongoose.Schema.Types.ObjectId, ref: AstrologerModel,
+                type: mongoose.Schema.Types.ObjectId, ref: AstrologerPersonalDetailModel,
                 default:null,
             },
         }
