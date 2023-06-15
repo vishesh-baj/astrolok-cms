@@ -5,6 +5,8 @@ import { GoSearch } from "react-icons/go";
 import { BsBell } from "react-icons/bs";
 import { AiOutlineShopping } from "react-icons/ai";
 import { Dropdown } from "../components";
+import { navbarMapping } from "../mappings";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const dispatch = useDispatch();
   const isExpanded = useSelector((x) => x.appConfig.sidebarOpen);
@@ -32,36 +34,33 @@ const Navbar = () => {
               <GoSearch className="w-8 cursor-pointer" />
             </button>
 
-            <Dropdown
-              itemsList={["Course one", "Course two ", "Course Three"]}
-              label="Courses"
-            />
+            {navbarMapping.map((item) => {
+              if (item.type === "dropdown") {
+                return (
+                  <Dropdown
+                    key={item.label}
+                    label={item.label}
+                    itemsList={item.itemsArray}
+                  />
+                );
+              } else {
+                return (
+                  <div
+                    key={item.label}
+                    className="flex justify-center items-center"
+                  >
+                    <Link
+                      to={item.link}
+                      className="btn btn-ghost text-black  font-light lowercase"
+                    >
+                      {item.label}
+                    </Link>
+                  </div>
+                );
+              }
+            })}
+
             {/* mapping is required */}
-            <div className="flex justify-center items-center">
-              <button className="btn btn-ghost text-black lowercase font-light">
-                Consultation
-              </button>
-            </div>
-            <div className="flex justify-center items-center">
-              <button className="btn btn-ghost text-black lowercase font-light">
-                Sessions
-              </button>
-            </div>
-            <div className="flex justify-center items-center">
-              <button className="btn btn-ghost text-black lowercase font-light">
-                Booking List
-              </button>
-            </div>
-            <div className="flex justify-center items-center">
-              <button className="btn btn-ghost text-black lowercase font-light">
-                Upcoming events
-              </button>
-            </div>
-            <div className="flex justify-center items-center">
-              <button className="btn btn-ghost text-black lowercase font-light">
-                Top Astrologers
-              </button>
-            </div>
           </div>
           {/* right side */}
           <div

@@ -18,8 +18,6 @@ export const sidebarMapping = [
     text: "Birth Details",
     navlink: "/birth-details",
   },
-
-  // TODO: breaking UI need to be fixed
   {
     Icon: HiUserCircle,
     text: "Consultation",
@@ -43,4 +41,35 @@ export const sidebarMapping = [
 ];
 
 // maps the navbar
-export const navbarMapping = [{}];
+export const navbarMapping = [
+  {
+    type: "dropdown",
+    label: "Courses",
+    itemsArray: ["Course One", "Course Two", "Course Three"],
+  },
+  {
+    type: "link",
+    label: "Consultation",
+    link: "/user-consultation-list",
+  },
+  {
+    type: "link",
+    label: "Sessions",
+    link: "/user-sessions",
+  },
+  {
+    type: "link",
+    label: "Booking List",
+    link: "/user-booking-list",
+  },
+  {
+    type: "link",
+    label: "Upcomming Events",
+    link: "/user-upcoming-events",
+  },
+  {
+    type: "link",
+    label: "Top Astrologers",
+    link: "/user-top-astrologers",
+  },
+];
