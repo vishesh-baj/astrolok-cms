@@ -4,7 +4,7 @@
 
 import { Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "./layouts/AppLAyout";
-import { UserDashboard } from "./pages";
+import { UserDashboard, UserProfile } from "./pages";
 import { PATHS } from "./router/paths";
 const App = () => {
   return (
@@ -16,6 +16,7 @@ const App = () => {
             element={<Navigate to={PATHS.userDashboard} />}
           />
           <Route path={PATHS.userDashboard} element={<UserDashboard />} />
+          <Route path={PATHS.userProfile} element={<UserProfile />} />
         </Routes>
       </AppLayout>
 

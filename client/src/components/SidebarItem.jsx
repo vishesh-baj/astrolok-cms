@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 const SidebarItem = ({ Icon, text, link, itemExpanded }) => {
   return (
     <NavLink
@@ -16,6 +16,7 @@ const SidebarItem = ({ Icon, text, link, itemExpanded }) => {
   );
 };
 
+// sidebar specific props
 SidebarItem.propTypes = {
   Icon: PropTypes.elementType.isRequired,
   text: PropTypes.string.isRequired,
