@@ -43,6 +43,8 @@ userRoutes.get("/allConsultationsOfUser", checkLoginOrNot,globalController.consu
 
 userRoutes.post("/ratingsAndReview", checkLoginOrNot,userController.createRatingsAndReview)
 
+userRoutes.get("/ratingsReviewByUser", checkLoginOrNot,userController.getRatingReviewByUser)
+
 
 
 

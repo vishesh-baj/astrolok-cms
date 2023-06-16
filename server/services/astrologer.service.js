@@ -1,6 +1,7 @@
 const AstrologerConsultation = require("../models/Astrologers/AstrologerConsultation");
 const AstrologerPersonalDetailModel = require("../models/Astrologers/AstrologerPersonalDetailModel");
 const AvailableTiming = require("../models/Astrologers/AvailableTiming");
+const ratingsReview = require("../models/users/ratingsReview");
 
 class AstrologerService {
   async charges(req, res) {
@@ -441,6 +442,123 @@ class AstrologerService {
       };
     }
   }
+
+  async getRatingReviewByAstrologer(astrologerId) {
+    try {
+      const alreadyRatingAndReview = await ratingsReview.findOne({astrologerId})
+    
+  
+      if (alreadyRatingAndReview) {
+        return ({
+          success: true,
+          error: false,
+          errorCode: 200,
+          message: "Found rating and review",
+          data: alreadyRatingAndReview
+        })
+      }
+      else {
+        return ({
+          success: false,
+          error: false,
+          errorCode: 404,
+          message: "Not found rating and review",
+          data: ""
+        })
+      }
+    } catch (error) {
+      return ({
+        success: false,
+        error: true,
+        message: error.message,
+        errorCode: 500,
+        data: ""
+      })
+    }
+  }
+
+  async getRatingReviewById(id) {
+    try {
+      const alreadyRatingAndReview = await ratingsReview.findByIdAndUpdate(id)
+    
+      if (alreadyRatingAndReview) {
+        return ({
+          success: true,
+          error: false,
+          errorCode: 200,
+          message: "Found rating and review",
+          data: alreadyRatingAndReview
+        })
+      }
+      else {
+        return ({
+          success: false,
+          error: false,
+          errorCode: 404,
+          message: "Not found rating and review",
+          data: ""
+        })
+      }
+    } catch (error) {
+      return ({
+        success: false,
+        error: true,
+        message: error.message,
+        errorCode: 500,
+        data: ""
+      })
+    }
+  }
+
+  async getRatingReviewByIdAndUpdate(id,status) {
+    try {
+      const alreadyRatingAndReview = await ratingsReview.findByIdAndUpdate(id,{status})
+    
+      if (alreadyRatingAndReview) {
+        return ({
+          success: true,
+          error: false,
+          errorCode: 200,
+          message: "Found rating and review",
+          data: await this.getRatingReviewById(id)
+        })
+      }
+      else {
+        return ({
+          success: false,
+          error: false,
+          errorCode: 404,
+          message: "Not found rating and review",
+          data: ""
+        })
+      }
+    } catch (error) {
+      return ({
+        success: false,
+        error: true,
+        message: error.message,
+        errorCode: 500,
+        data: ""
+      })
+    }
+  }
+
+  async acceptRatingReviewsService(id,status){
+    try {
+      const ratingsAndReview = await this.getRatingReviewByIdAndUpdate(id,status)
+   
+      return(ratingsAndReview);
+    } catch (error) {
+     return({
+      success:false,
+      error:true,
+      message:error.message,
+      data:""
+     })
+    }
+  }
+
 }
+
 
 module.exports = AstrologerService;

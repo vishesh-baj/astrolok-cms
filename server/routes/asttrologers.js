@@ -25,8 +25,10 @@ astrologerRoutes.post("/setAvailableTiming",checkLoginOrNot, astroController.set
 astrologerRoutes.get("/getAllAstrologers",checkLoginOrNot, astroController.getAllAstrologers)
 
 
+astrologerRoutes.get("/ratingsReviewByAstrologer", checkLoginOrNot,astroController.getRatingReviewByAstrologer)
 
 
+astrologerRoutes.post("/acceptRatingReviews", checkLoginOrNot,astroController.acceptRatingReviews)
 
 
 

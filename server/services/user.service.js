@@ -208,7 +208,39 @@ class UserService {
     }
   }
 
-
+  async getRatingAndReviewByUser(userId) {
+    try {
+      const alreadyRatingAndReview = await ratingsReview.findOne({userId})
+    
+  
+      if (alreadyRatingAndReview) {
+        return ({
+          success: true,
+          error: false,
+          errorCode: 200,
+          message: "Found rating and review",
+          data: alreadyRatingAndReview
+        })
+      }
+      else {
+        return ({
+          success: false,
+          error: false,
+          errorCode: 404,
+          message: "Not found rating and review",
+          data: ""
+        })
+      }
+    } catch (error) {
+      return ({
+        success: false,
+        error: true,
+        message: error.message,
+        errorCode: 500,
+        data: ""
+      })
+    }
+  }
 
   async createNewRatingAndReview(rating, review, userId, astrologerId) {
     try {

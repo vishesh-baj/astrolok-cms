@@ -42,7 +42,7 @@ class UserController {
 
   //get personal Detail this is get route
   getpersonalDetail = async (req, res) => {
-        
+
     try {
       const resp = await this.userServiceInstance.findUserById(req.user._id);
 
@@ -141,8 +141,8 @@ class UserController {
 
         if (consultations?.error) {
           return res.status(consultations?.errorCode).json(consultations);
-        } 
-        
+        }
+
         else {
           for (let i = 0; i < consultations?.data?.length; i++) {
             if (consultations?.data[i].bookingdate === date) {
@@ -200,16 +200,16 @@ class UserController {
               slotsOFOrginalAstrologerTiming?.data,
               slotsOFBreak1_OfAstrologer?.data
             );
-              
-              if(filterArray?.error){
-                return res.status(filterArray?.errorCode).json({ filterArray });
-              }
+
+            if (filterArray?.error) {
+              return res.status(filterArray?.errorCode).json({ filterArray });
+            }
 
             filterArray = await this.astrologerServiceInstance.filterArray(
               filterArray?.data,
               slotsOFBreak2_OfAstrologer?.data
             );
-            if(filterArray?.error){
+            if (filterArray?.error) {
               return res.status(filterArray?.errorCode).json({ filterArray });
             }
 
@@ -234,123 +234,121 @@ class UserController {
   }
 
 
-  getWallet = async (req,res)=>{
+  getWallet = async (req, res) => {
     try {
-       
-  
+
+
       const walletData = await this.userServiceInstance.getWalletData(req.user._id);
 
-     return res.status(walletData?.errorCode).json({walletData})
+      return res.status(walletData?.errorCode).json({ walletData })
     } catch (error) {
       console.log(error);
       return res.status(500).json({
-        success:false,
-        message:error.message,
-        error:true,
-        errorCode:500,
+        success: false,
+        message: error.message,
+        error: true,
+        errorCode: 500,
       })
     }
 
-    
+
   }
 
-  createWallet = async(req,res)=>{
+  createWallet = async (req, res) => {
     try {
       const newWallet = await this.userServiceInstance.createNewWallet(req.user._id)
 
-      return res.status(newWallet.errorCode).json({newWallet})
+      return res.status(newWallet.errorCode).json({ newWallet })
     } catch (error) {
       return res.status(500).json({
-        success:false,
-        error:true,
-        message:error.message,
-        data:""
+        success: false,
+        error: true,
+        message: error.message,
+        data: ""
       })
     }
   }
 
-  addMoneyTowallet = async(req,res)=>{
-   try {
-    const {amount} = req.body;
-    if(!amount){
-      return res.status(404).json({
-        success:false,
-        message:"please provide the amount",
-        error:false,
+  addMoneyTowallet = async (req, res) => {
+    try {
+      const { amount } = req.body;
+      if (!amount) {
+        return res.status(404).json({
+          success: false,
+          message: "please provide the amount",
+          error: false,
+        })
+      }
+      else {
+        const newAmount = await this.userServiceInstance.addMoneyToWallet(req.user._id, amount)
+
+        return res.status(newAmount.errorCode).json({ newAmount })
+      }
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message
       })
     }
-    else{
-      const newAmount = await this.userServiceInstance.addMoneyToWallet(req.user._id,amount)
-
-      return res.status(newAmount.errorCode).json({newAmount})
-    }
-   } catch (error) {
-    return res.status(500).json({
-      success:false,
-      message:error.message
-    })
-   }
   }
 
 
   // their is get rating api but it is in  global controller 
-  createRatingsAndReview = async(req,res)=>{
-     
-     try {
-      const {rating,review} = req.body;
-      const {astrologerId} = req.query;
+  createRatingsAndReview = async (req, res) => {
 
-      
-      if(!rating || !review || !astrologerId){
+    try {
+      const { rating, review } = req.body;
+      const { astrologerId } = req.query;
+
+
+      if (!rating || !review || !astrologerId) {
         return res.status(404).json({
-          success:false,
-          message:"please provide rating and review or astrologerId",
-          error:false,
-          data:""
+          success: false,
+          message: "please provide rating and review or astrologerId",
+          error: false,
+          data: ""
         })
       }
-      else{
-        const newRatingsAndReview = await this.userServiceInstance.createNewRatingAndReview(rating,review,req.user._id,astrologerId)
-     
-     
+      else {
+        const newRatingsAndReview = await this.userServiceInstance.createNewRatingAndReview(rating, review, req.user._id, astrologerId)
+
+
         return res.status(200).json(newRatingsAndReview)
-        
+
 
       }
-     } catch (error) {
+    } catch (error) {
       return res.status(500).json({
-        success:false,
-        error:true,
-        message:error.message,
-        data:"",
-        errorCode:500
+        success: false,
+        error: true,
+        message: error.message,
+        data: "",
+        errorCode: 500
       })
-     }
-     
+    }
+
 
   }
 
 
-  getRatingReviewByUser = async(req,res)=>{
+  getRatingReviewByUser = async (req, res) => {
+    
     try {
-        const ratingsAndReviews = await  this.userServiceInstance.getRatingAndReviewByUser(req.user._id)
+      const ratingsAndReviews = await this.userServiceInstance.getRatingAndReviewByUser(req.user._id)
 
-        return res.status(ratingsAndReviews?.errorCode).json({ratingsAndReviews})
+      return res.status(ratingsAndReviews?.errorCode).json({ ratingsAndReviews })
     } catch (error) {
-        return res.status(500).json({
-            success: false,
-            error: true,
-            message: error.message,
-            errorCode: 500,
-            data: ""
-        })
+      return res.status(500).json({
+        success: false,
+        error: true,
+        message: error.message,
+        errorCode: 500,
+        data: ""
+      })
     }
-   
 
+  }
 
-
-}
-  
 
 }
 

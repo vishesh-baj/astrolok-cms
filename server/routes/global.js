@@ -15,7 +15,7 @@ globalRoutes.get("/",checkLoginOrNot,(req,res)=>{
 globalRoutes.post("/createPurchaseHistory",checkLoginOrNot,globalController.createPurchaseHistory)
 
 
-globalRoutes.get("/getRatingReview",checkLoginOrNot,globalController.getRatingReview)
+
 
 
 

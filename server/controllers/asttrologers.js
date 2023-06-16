@@ -201,6 +201,55 @@ class AstrologerController {
       })
     }
   }
+
+
+  getRatingReviewByAstrologer = async(req,res)=>{
+    try {
+        const ratingsAndReviews = await  this.astrologerServiceInstance.getRatingReviewByAstrologer(req.user._id)
+
+        return res.status(ratingsAndReviews?.errorCode).json({ratingsAndReviews})
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: true,
+            message: error.message,
+            errorCode: 500,
+            data: ""
+        })
+    }
+}
+
+  acceptRatingReviews = async(req,res)=>{
+      try {
+        const {status} = req.body
+        const {id} = req.query
+
+       
+        if(!id){
+          return res.status(404).json({
+            success:false,
+            error:false,
+            message:"please provide status",
+            data:""
+          })
+        }
+        else{
+          const updatedRatingAndReviews =  await this.astrologerServiceInstance.acceptRatingReviewsService(id,status)
+
+        
+            return res.status(updatedRatingAndReviews?.errorCode).json({updatedRatingAndReviews})
+        }
+    
+      } catch (error) {
+        return res.status(500).json({
+          success:false,
+          error:true,
+          message:error.message,
+          data:""
+        })        
+      }
+  }
+
   
 }
 module.exports = AstrologerController;

@@ -6,13 +6,15 @@ const ratingReview = mongoose.Schema({
 
     // here user is giving rating to astrologer we are not creating an array of obj as if astrologer has 1000ratings and we need to see only one then it be fetching us all
     
-    astrologerdetails: {
+    astrologerId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: AstrologerPersonalDetailModel // use the model name as a string for the ref option
+        ref: AstrologerPersonalDetailModel, // use the model name as a string for the ref option
+        require:true,
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: Usermodel,
+        require:true,
     },
     rating:{
         type:Number,
