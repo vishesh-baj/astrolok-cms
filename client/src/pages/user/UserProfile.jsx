@@ -1,5 +1,5 @@
 import UserProfileBanner from "../../assets/userProfileBanner.png";
-import { Placeholder } from "../../components";
+import { Dropdown, Placeholder } from "../../components";
 const UserProfile = () => {
   return (
     <>
@@ -124,7 +124,7 @@ const UserProfile = () => {
             {/* second row for personal details */}
             <div className="w-full flex gap-4">
               <div className="form-control w-full">
-                <label htmlFor="currentPassword" className="label">
+                {/* <label htmlFor="currentPassword" className="label">
                   <span className="label-text">Location</span>
                 </label>
                 <input
@@ -132,6 +132,10 @@ const UserProfile = () => {
                   type="password"
                   name="currentPassword"
                   id="currentPassword"
+                /> */}
+                <Dropdown
+                  label="Location"
+                  itemsList={["India", "USA", "Japan"]}
                 />
               </div>
               <div className="form-control w-full">

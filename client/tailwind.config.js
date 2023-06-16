@@ -1,28 +1,33 @@
 /** @type {import('tailwindcss').Config} */
+// default theme for the tailwind
 export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    // screens: {
-    //   'sm': '640px',
-    //   // => @media (min-width: 640px) { ... }
-
-    //   'md': '768px',
-    //   // => @media (min-width: 768px) { ... }
-
-    //   'lg': '1024px',
-    //   // => @media (min-width: 1024px) { ... }
-
-    //   'xl': '1280px',
-    //   // => @media (min-width: 1280px) { ... }
-
-    //   '2xl': '1536px',
-    //   // => @media (min-width: 1536px) { ... }
-    // }
     extend: {
       fontFamily: {
         "plus-jakarta-sans": ['"Plus Jakarta Sans"', "sans-serif"],
       },
     },
+    daisyui: [
+      {
+        themes: [
+          {
+            appTheme: {
+              primary: "#5D87FF",
+              secondary: "#49BEFF",
+              success: "#13DEB9",
+              info: "#539BFF",
+              warning: "#FFAE1F",
+              danger: "##FA896B",
+              light: "#F6F9FC",
+              dark: "#2A3547",
+            },
+          },
+          "dark",
+          "light",
+        ],
+      },
+    ],
   },
   plugins: [require("daisyui")],
 };
